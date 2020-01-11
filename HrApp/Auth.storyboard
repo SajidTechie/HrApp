@@ -115,7 +115,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGh-uo-Epx">
-                                                <rect key="frame" x="20" y="350" width="44" height="20"/>
+                                                <rect key="frame" x="20" y="350" width="41" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="jHM-Fo-0XK"/>
                                                 </constraints>
@@ -128,7 +128,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWg-3D-fDQ">
-                                                <rect key="frame" x="256" y="350" width="99" height="20"/>
+                                                <rect key="frame" x="258" y="350" width="97" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="c0Q-gZ-Auf"/>
                                                 </constraints>
@@ -379,25 +379,25 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait while we verify your number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="if6-8u-ZSb">
-                                        <rect key="frame" x="20" y="43.5" width="335" height="14"/>
+                                        <rect key="frame" x="20" y="43.5" width="335" height="14.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                         <color key="textColor" name="FontDarkText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcd@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-gS-4UQ">
-                                        <rect key="frame" x="20" y="77.5" width="335" height="15.5"/>
+                                        <rect key="frame" x="20" y="78" width="335" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" name="FontLightText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="63456237562" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1J-3e-Mxc">
-                                        <rect key="frame" x="20" y="98" width="335" height="15.5"/>
+                                        <rect key="frame" x="20" y="98.5" width="335" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" name="FontLightText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="REQ NO" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="4cS-UI-JmP" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="133.5" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="134" width="335" height="40"/>
                                         <color key="tintColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="yxz-c0-xVU"/>
@@ -418,7 +418,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="ENTER OTP" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="SHQ-or-bcy" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="193.5" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="194" width="335" height="40"/>
                                         <color key="tintColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="OGb-1D-Oy1"/>
@@ -439,7 +439,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change CIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qnc-Mt-6Wt">
-                                        <rect key="frame" x="20" y="243.5" width="66" height="14"/>
+                                        <rect key="frame" x="20" y="244" width="63.5" height="14"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                         <color key="textColor" name="FontDarkText"/>
                                         <nil key="highlightedColor"/>
@@ -451,7 +451,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2i-Hl-UPH" customClass="RoundButton" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="277.5" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="278" width="335" height="40"/>
                                         <color key="backgroundColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="yol-dl-u18"/>
@@ -762,10 +762,10 @@
             <color red="0.3580000102519989" green="0.3580000102519989" blue="0.3580000102519989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="FontDarkText">
-            <color red="0.27700001001358032" green="0.27300000190734863" blue="0.27300000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="FontDarkText">
-            <color red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.27700001001358032" green="0.27300000190734863" blue="0.27300000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="FontLightText">
             <color red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
