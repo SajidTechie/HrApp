@@ -12,7 +12,7 @@ class GradientView: UIView {
     
     @IBInspectable var startColor:   UIColor = UIColor.init(named: "secondaryStartGradient") ?? UIColor.blue { didSet { updateColors() }}
     @IBInspectable var centerColor:   UIColor = UIColor.init(named: "secondaryCenterGradient") ?? UIColor.green { didSet { updateColors() }}
-    @IBInspectable var endColor:     UIColor = UIColor.init(named: "secondaryEndGradient") ?? UIColor.green { didSet { updateColors() }}
+    @IBInspectable var endColor:     UIColor = UIColor.init(named: "secondaryEndGradient") ?? UIColor.cyan { didSet { updateColors() }}
     @IBInspectable var diagonalMode:  Bool =  true { didSet { updatePoints() }}
     
     override public class var layerClass: AnyClass { CAGradientLayer.self }
