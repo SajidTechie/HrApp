@@ -30,6 +30,8 @@
 		694DC91022E57DC900DE60FF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694DC90D22E57DC800DE60FF /* BaseViewController.swift */; };
 		694DC91122E57DC900DE60FF /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694DC90E22E57DC800DE60FF /* HomeController.swift */; };
 		694DC91222E57DC900DE60FF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694DC90F22E57DC800DE60FF /* MenuViewController.swift */; };
+		6953F48223C9AAD800FBDF1F /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6953F48023C9AAD800FBDF1F /* GradientButton.swift */; };
+		6953F48323C9AAD800FBDF1F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6953F48123C9AAD800FBDF1F /* GradientView.swift */; };
 		69543ED223B9DE78009D521C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69543ED123B9DE78009D521C /* CardView.swift */; };
 		6964A5DE23C5A18200439471 /* MapPunchInOutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6964A5DD23C5A18200439471 /* MapPunchInOutController.swift */; };
 		6964A5E023C5AEC800439471 /* PunchInOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6964A5DF23C5AEC800439471 /* PunchInOut.storyboard */; };
@@ -120,6 +122,8 @@
 		694DC90D22E57DC800DE60FF /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		694DC90E22E57DC800DE60FF /* HomeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		694DC90F22E57DC800DE60FF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		6953F48023C9AAD800FBDF1F /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		6953F48123C9AAD800FBDF1F /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		69543ED123B9DE78009D521C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6964A5DD23C5A18200439471 /* MapPunchInOutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPunchInOutController.swift; sourceTree = "<group>"; };
 		6964A5DF23C5AEC800439471 /* PunchInOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PunchInOut.storyboard; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 		69D95E1122FC2ED200D02784 /* Common Files */ = {
 			isa = PBXGroup;
 			children = (
+				6953F48023C9AAD800FBDF1F /* GradientButton.swift */,
+				6953F48123C9AAD800FBDF1F /* GradientView.swift */,
 				6964A5EA23C5E10600439471 /* GradientColor.swift */,
 				6970B0F523C4A0D600757597 /* ViewControllerUtils.swift */,
 				6970B0F323C49D1D00757597 /* Utility.swift */,
@@ -652,6 +658,7 @@
 				69F47E1622E0916800CA2D54 /* DataManager.swift in Sources */,
 				694DC91022E57DC900DE60FF /* BaseViewController.swift in Sources */,
 				69ABA1FB23C86538003883D7 /* PopupDateDelegate.swift in Sources */,
+				6953F48323C9AAD800FBDF1F /* GradientView.swift in Sources */,
 				69494EDA23C3070700E9DC14 /* DashboardController.swift in Sources */,
 				69F47E2822E0961600CA2D54 /* SplashScreenController.swift in Sources */,
 				69F47E2022E094FF00CA2D54 /* ForgotPasswordController.swift in Sources */,
@@ -668,6 +675,7 @@
 				69ABA1F823C86508003883D7 /* DatePickerController.swift in Sources */,
 				69F47E1522E0916800CA2D54 /* Reachability.swift in Sources */,
 				6970B0F423C49D1D00757597 /* Utility.swift in Sources */,
+				6953F48223C9AAD800FBDF1F /* GradientButton.swift in Sources */,
 				6930564023C73B6400A092A8 /* LeaveRecordController.swift in Sources */,
 				69F47E2622E095DA00CA2D54 /* OtpController.swift in Sources */,
 				69F47DDF22E03FB100CA2D54 /* HrApp.xcdatamodeld in Sources */,
