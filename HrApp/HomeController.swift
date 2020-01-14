@@ -38,9 +38,19 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
         imageSliderAnniversary.autoSrcollEnabled = true
         imageSliderBirthDay.showOnlyImages = false
         imageSliderAnniversary.showOnlyImages = false
+        
+        imageSliderBirthDay.isBirthday = true
+        imageSliderAnniversary.isBirthday = false
+        
+//        self.imageSliderBirthDay.strName = ["Sergio Ramos","Walker","Mendy","Rodri","Fernandinho"]
+//        self.imageSliderBirthDay.strDate = ["is celebrating his anniversary on 1st Apr","is celebrating his anniversary on 3rd Dec","is celebrating his anniversary on 2nd march","is celebrating his anniversary on 4th Oct","is celebrating his anniversary on 4th Aug"]
+//
+//        self.imageSliderAnniversary.strName = ["Sergio Aguero","Kevin De bruyne","David Silva","Gabriel","Ederson"]
+//        self.imageSliderAnniversary.strDate = ["is celebrating his birthday on 9th Jan","is celebrating his birthday on 3rd June","is celebrating his birthday on 13th march","is celebrating his birthday on 1st August","is celebrating his birthday on 4th Apr"]
+        
         self.imageSliderBirthDay.images = ["attendance","report","approval","leaves","expense"]
         self.imageSliderAnniversary.images = ["attendance","report","approval","leaves","expense"]
-      
+        
         
         items = [Item(ImageName: "attendance", CatName: "Attendance"),
                  Item(ImageName: "report", CatName: "Report"),

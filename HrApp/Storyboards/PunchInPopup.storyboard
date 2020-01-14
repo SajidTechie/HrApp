@@ -20,7 +20,7 @@
         <!--Punch In Popup-->
         <scene sceneID="HIf-qV-h29">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="QOn-vz-sVV" customClass="PunchInPopup" customModule="HrApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PunchInPopup" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QOn-vz-sVV" customClass="PunchInPopup" customModule="HrApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TNg-7e-uzM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

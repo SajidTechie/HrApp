@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class CircularProgressBar: UIView {
-   @IBInspectable public var backGroundCircleColor: UIColor = UIColor.lightGray
+     @IBInspectable public var backGroundCircleColor: UIColor = UIColor.lightGray
      @IBInspectable public var startGradientColor: UIColor = UIColor.red
      @IBInspectable public var endGradientColor: UIColor = UIColor.orange
      @IBInspectable public var textColor: UIColor = UIColor.white

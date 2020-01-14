@@ -51,6 +51,9 @@
                                                 <state key="normal" title="Check In">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onPunchInClicked:" destination="xTi-YG-aGU" eventType="touchUpInside" id="Jc4-fz-MuL"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebb-bs-z7O" userLabel="btnCheckOut">
                                                 <rect key="frame" x="200" y="0.0" width="100" height="30"/>
@@ -62,6 +65,9 @@
                                                 <state key="normal" title="Check Out">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onPunchOutClicked:" destination="xTi-YG-aGU" eventType="touchUpInside" id="eMW-tE-Lml"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
