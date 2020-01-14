@@ -10,7 +10,7 @@ import UIKit
 
 class StatisticViewController: UIViewController {
     
-     @IBOutlet weak var circularProgress: CircularProgressBar!
+    @IBOutlet weak var circularProgress: CircularProgressBar!
     
     @IBOutlet var tabButtons: [UIButton]!
     @IBOutlet var lineLabels: [UILabel]!
