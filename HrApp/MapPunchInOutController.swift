@@ -115,5 +115,15 @@ class MapPunchInOutController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.present(alert, animated: true, completion: nil)
     }
     
+    @IBAction func onPunchInClicked(_ sender: Any) {
+            let storyBoard: UIStoryboard = UIStoryboard(name: "PunchInPopup", bundle: nil)
+            let confirmPopup = storyBoard.instantiateViewController(withIdentifier: "PunchInPopup") as! PunchInPopup
+            self.present(confirmPopup, animated: true, completion: nil)
+    }
+    
+    @IBAction func onPunchOutClicked(_ sender: Any) {
+           
+       }
+
     
 }

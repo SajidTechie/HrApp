@@ -279,9 +279,9 @@
 				6930563723C73B3C00A092A8 /* Cells */,
 				6930563E23C73B6400A092A8 /* LeaveApplicationController.swift */,
 				6930563D23C73B6400A092A8 /* LeaveRecordController.swift */,
+				69494EDB23C3334400E9DC14 /* CalendarLeaveController.swift */,
 				6930563C23C73B6400A092A8 /* LeaveTypeController.swift */,
 				69CCE05A23BDD1AD000D86BD /* Leaves.storyboard */,
-				69494EDB23C3334400E9DC14 /* CalendarLeaveController.swift */,
 				6964A5EC23C60CA900439471 /* StatisticViewController.swift */,
 			);
 			path = Leaves;

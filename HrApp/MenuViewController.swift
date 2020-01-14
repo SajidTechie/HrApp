@@ -95,7 +95,7 @@ class MenuViewController: UIViewController {
         
         // let loginData =  UserDefaults.standard.value(forKey: "loginData") as? Dictionary ?? [:]
         self.tblMenuOptions.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 64, right: 0);
-        
+
     }
     
     

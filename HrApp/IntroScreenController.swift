@@ -19,7 +19,7 @@ class IntroScreenController: BaseViewController {
         imageSlider.autoSrcollEnabled = false
         imageSlider.enableArrowIndicator = true
         imageSlider.showOnlyImages = true
-        self.imageSlider.images = ["attendance","report","approval","leaves","expense"]
+        self.imageSlider.images = ["intro_screen_1","intro_screen_2","intro_screen_1","intro_screen_2"]
         imageSlider.delegate = self
         
 //        Analytics.setScreenName("INTRO SCREEN", screenClass: "IntroScreenViewController")

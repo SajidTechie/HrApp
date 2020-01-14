@@ -46,6 +46,7 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
     var durationTime : TimeInterval = 2.0
     
     var showOnlyImages = true
+    var isBirthday:Bool = false
     
     var images = [String](){
         didSet{
@@ -196,35 +197,65 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
         {
             let viewV = getView(index: index)
             viewV.frame = CGRect(x: CGFloat(index)*bounds.width, y: 0, width: bounds.width, height: bounds.height-bottomImagePadding)
-          
-             let imageV = UIImageView()
-             imageV.contentMode = .scaleAspectFit
-             imageV.clipsToBounds = true
+            
+            var imageV = UIImageView()
+            if(showOnlyImages){
+                imageV = getImageView(index: index)
+                imageV.frame = CGRect(x: CGFloat(index)*bounds.width, y: 0, width: bounds.width, height: bounds.height-bottomImagePadding)
+            }else{
+                imageV.layer.borderWidth = 1
+                imageV.layer.masksToBounds = false
+                imageV.layer.borderColor = UIColor.lightGray.cgColor
+                imageV.layer.cornerRadius = 35
+                imageV.contentMode = .scaleAspectFit
+                imageV.clipsToBounds = true
+            }
             
             let labelV = UILabel()
             labelV.textAlignment = .center
             labelV.numberOfLines = 0
-            labelV.frame = CGRect(x: 70, y: -20, width: bounds.width - 100, height: bounds.height)
-            labelV.backgroundColor = UIColor.green
-        
+            labelV.frame = CGRect(x: 100, y: -20, width: bounds.width - 100, height: bounds.height)
+            
+            var str1 = ""
+            var str2 = ""
+            
+            if(isBirthday){
+                str1 = "Akshay Shetty"
+                str2 = "\nis celebrating his/her birthday on 10th jan"
+            }else{
+                str1 = "Shetty Ille"
+                str2 = "\nis celebrating his/her anniversary on 20th jan"
+            }
+            
+            let attr1 = [NSAttributedString.Key.foregroundColor: UIColor.init(named: "FontDarkText"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
+            let attr2 = [NSAttributedString.Key.foregroundColor: UIColor.init(named: "FontLightText"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
+            
+            let partOne = NSMutableAttributedString(string: str1, attributes: attr1)
+            let partTwo = NSMutableAttributedString(string: str2, attributes: attr2)
+         
+            let combination = NSMutableAttributedString()
+            combination.append(partOne)
+            combination.append(partTwo)
+            
             if(showOnlyImages){
                 imageV.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
                 labelV.isHidden = true
             }else{
-                imageV.frame = CGRect(x: 20, y: 40, width: 50, height: 50)
+                imageV.frame = CGRect(x: 20, y: 30, width: 70, height: 70)
                 labelV.isHidden = false
             }
-          
+            
             
             if allowCircular && images.count != 0
             {
                 if index == 0 {
                     if let imageUrlString = images.last, let url = URL(string: imageUrlString), imageUrlString.isValidURL {
                         imageV.sd_setImage(with: url, placeholderImage: defaultBanner, options: .refreshCached, completed: nil)
-                        labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                        //                        labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                        labelV.attributedText = combination
                     } else{
                         imageV.image = UIImage(named:images.last!)
-                        labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                        labelV.attributedText = combination
                     }
                     
                     //imageV.image = UIImage(named:images.last!)
@@ -233,10 +264,10 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                 {
                     if let imageUrlString = images.first, let url = URL(string: imageUrlString), imageUrlString.isValidURL {
                         imageV.sd_setImage(with: url, placeholderImage: defaultBanner, options: .refreshCached, completed: nil)
-                        labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                        labelV.attributedText = combination
                     } else{
                         imageV.image = UIImage(named:images.first!)
-                        labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                        labelV.attributedText = combination
                     }
                     
                     
@@ -245,10 +276,10 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                 {
                     if let url = URL(string: images[index - 1]), images[index - 1].isValidURL {
                         imageV.sd_setImage(with: url, placeholderImage: defaultBanner, options: .refreshCached, completed: nil)
-                        labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                        labelV.attributedText = combination
                     } else{
                         imageV.image = UIImage(named:images[index - 1])
-                        labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                        labelV.attributedText = combination
                     }
                     
                 }
@@ -257,18 +288,23 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
             {
                 if let url = URL(string: images[index]), images[index].isValidURL {
                     imageV.sd_setImage(with: url, placeholderImage: defaultBanner, options: .refreshCached, completed: nil)
-                    labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                    labelV.attributedText = combination
                 } else{
                     imageV.image = UIImage(named:images[index])
-                    labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
+                    labelV.attributedText = combination
                 }
                 
                 
             }
-            viewV.addSubview(imageV)
-            viewV.addSubview(labelV)
-            myScrollView.addSubview(viewV)
-            //myScrollView.addSubview(imageV)
+            
+            if(showOnlyImages){
+                myScrollView.addSubview(imageV)
+            }else{
+                viewV.addSubview(imageV)
+                viewV.addSubview(labelV)
+                myScrollView.addSubview(viewV)
+            }
+            
         }
         
         if count < imageViewArray.count {
@@ -292,25 +328,25 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
         return viewV
     }
     
-        func getImageView(index : Int)-> UIImageView
+    func getImageView(index : Int)-> UIImageView
+    {
+        if index < imageViewArray.count
         {
-            if index < imageViewArray.count
-            {
-                return imageViewArray[index]
-            }
-    
-            let imageV = UIImageView()
-            imageV.contentMode = .scaleAspectFill
-            imageV.clipsToBounds = true
-            imageV.isUserInteractionEnabled = true
-            let tapOnImage = UITapGestureRecognizer(target: self, action: #selector(self.tapOnImage))
-            imageV.addGestureRecognizer(tapOnImage)
-            imageViewArray.append(imageV)
-    
-            return imageV
+            return imageViewArray[index]
         }
+        
+        let imageV = UIImageView()
+        imageV.contentMode = .scaleAspectFill
+        imageV.clipsToBounds = true
+        imageV.isUserInteractionEnabled = true
+        let tapOnImage = UITapGestureRecognizer(target: self, action: #selector(self.tapOnImage))
+        imageV.addGestureRecognizer(tapOnImage)
+        imageViewArray.append(imageV)
+        
+        return imageV
+    }
     
-   
+    
     
     func createSlider(withImages images: [String], withAutoScroll isAutoScrollEnabled: Bool, in parentView: UIView)
     {
