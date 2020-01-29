@@ -10,9 +10,7 @@
 		6930563623C6FE3300A092A8 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930563523C6FE3300A092A8 /* CircularProgressBar.swift */; };
 		6930563A23C73B3C00A092A8 /* LeaveTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930563823C73B3C00A092A8 /* LeaveTypeCell.swift */; };
 		6930563B23C73B3C00A092A8 /* LeaveRecordsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930563923C73B3C00A092A8 /* LeaveRecordsCell.swift */; };
-		6930563F23C73B6400A092A8 /* LeaveTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930563C23C73B6400A092A8 /* LeaveTypeController.swift */; };
 		6930564023C73B6400A092A8 /* LeaveRecordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930563D23C73B6400A092A8 /* LeaveRecordController.swift */; };
-		6930564123C73B6400A092A8 /* LeaveApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930563E23C73B6400A092A8 /* LeaveApplicationController.swift */; };
 		6930564323C74A0E00A092A8 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6930564223C74A0E00A092A8 /* ProfileController.swift */; };
 		6930564523C7515F00A092A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6930564423C7515D00A092A8 /* GoogleService-Info.plist */; };
 		693C325F23BB472B00750B45 /* CurvedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693C325E23BB472B00750B45 /* CurvedImageView.swift */; };
@@ -49,6 +47,8 @@
 		69ABA1F623C86432003883D7 /* DatePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69ABA1F523C86432003883D7 /* DatePicker.storyboard */; };
 		69ABA1F823C86508003883D7 /* DatePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABA1F723C86508003883D7 /* DatePickerController.swift */; };
 		69ABA1FB23C86538003883D7 /* PopupDateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ABA1FA23C86537003883D7 /* PopupDateDelegate.swift */; };
+		69CA36DF23CDC68A0041469C /* LeaveApplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CA36DE23CDC6890041469C /* LeaveApplicationController.swift */; };
+		69CA36E123CDC8430041469C /* LeaveTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CA36E023CDC8430041469C /* LeaveTypeController.swift */; };
 		69CCE05B23BDD1AD000D86BD /* Leaves.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69CCE05A23BDD1AD000D86BD /* Leaves.storyboard */; };
 		69CCE05D23BDD965000D86BD /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CCE05C23BDD965000D86BD /* RoundView.swift */; };
 		69D95E1322FC2F5000D02784 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D95E1222FC2F5000D02784 /* RoundButton.swift */; };
@@ -94,9 +94,7 @@
 		6930563523C6FE3300A092A8 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		6930563823C73B3C00A092A8 /* LeaveTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaveTypeCell.swift; sourceTree = "<group>"; };
 		6930563923C73B3C00A092A8 /* LeaveRecordsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaveRecordsCell.swift; sourceTree = "<group>"; };
-		6930563C23C73B6400A092A8 /* LeaveTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaveTypeController.swift; path = ../../../../../Downloads/Leaves/LeaveTypeController.swift; sourceTree = "<group>"; };
 		6930563D23C73B6400A092A8 /* LeaveRecordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaveRecordController.swift; sourceTree = "<group>"; };
-		6930563E23C73B6400A092A8 /* LeaveApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LeaveApplicationController.swift; path = ../../../../../Downloads/Leaves/LeaveApplicationController.swift; sourceTree = "<group>"; };
 		6930564223C74A0E00A092A8 /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		6930564423C7515D00A092A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6930564623C7540C00A092A8 /* roboto.bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto.bold.ttf; sourceTree = "<group>"; };
@@ -140,6 +138,8 @@
 		69ABA1F523C86432003883D7 /* DatePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DatePicker.storyboard; sourceTree = "<group>"; };
 		69ABA1F723C86508003883D7 /* DatePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerController.swift; sourceTree = "<group>"; };
 		69ABA1FA23C86537003883D7 /* PopupDateDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopupDateDelegate.swift; sourceTree = "<group>"; };
+		69CA36DE23CDC6890041469C /* LeaveApplicationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaveApplicationController.swift; sourceTree = "<group>"; };
+		69CA36E023CDC8430041469C /* LeaveTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeaveTypeController.swift; sourceTree = "<group>"; };
 		69CCE05A23BDD1AD000D86BD /* Leaves.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Leaves.storyboard; sourceTree = "<group>"; };
 		69CCE05C23BDD965000D86BD /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		69D95E1222FC2F5000D02784 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -277,11 +277,11 @@
 			isa = PBXGroup;
 			children = (
 				6930563723C73B3C00A092A8 /* Cells */,
-				6930563E23C73B6400A092A8 /* LeaveApplicationController.swift */,
-				6930563D23C73B6400A092A8 /* LeaveRecordController.swift */,
-				69494EDB23C3334400E9DC14 /* CalendarLeaveController.swift */,
-				6930563C23C73B6400A092A8 /* LeaveTypeController.swift */,
 				69CCE05A23BDD1AD000D86BD /* Leaves.storyboard */,
+				69CA36DE23CDC6890041469C /* LeaveApplicationController.swift */,
+				6930563D23C73B6400A092A8 /* LeaveRecordController.swift */,
+				69CA36E023CDC8430041469C /* LeaveTypeController.swift */,
+				69494EDB23C3334400E9DC14 /* CalendarLeaveController.swift */,
 				6964A5EC23C60CA900439471 /* StatisticViewController.swift */,
 			);
 			path = Leaves;
@@ -642,6 +642,7 @@
 				69F47DD922E03FB100CA2D54 /* ViewController.swift in Sources */,
 				69F47E2A22E0962700CA2D54 /* IntroScreenController.swift in Sources */,
 				69F47E1E22E094E400CA2D54 /* LoginController.swift in Sources */,
+				69CA36E123CDC8430041469C /* LeaveTypeController.swift in Sources */,
 				694DC91222E57DC900DE60FF /* MenuViewController.swift in Sources */,
 				69F47E2222E0951500CA2D54 /* ResetPasswordController.swift in Sources */,
 				6970B0F823C4A0ED00757597 /* RoundEditText.swift in Sources */,
@@ -651,6 +652,7 @@
 				69543ED223B9DE78009D521C /* CardView.swift in Sources */,
 				69D95E1322FC2F5000D02784 /* RoundButton.swift in Sources */,
 				69494EDC23C3334400E9DC14 /* CalendarLeaveController.swift in Sources */,
+				69CA36DF23CDC68A0041469C /* LeaveApplicationController.swift in Sources */,
 				6930563A23C73B3C00A092A8 /* LeaveTypeCell.swift in Sources */,
 				69F47E1622E0916800CA2D54 /* DataManager.swift in Sources */,
 				694DC91022E57DC900DE60FF /* BaseViewController.swift in Sources */,
@@ -663,8 +665,6 @@
 				693C353F23BB58EE00750B45 /* QuickMenuCell.swift in Sources */,
 				6964A5E523C5E02300439471 /* PunchInPopup.swift in Sources */,
 				69425B8322E70935000B9A0F /* ContactUsViewController.swift in Sources */,
-				6930563F23C73B6400A092A8 /* LeaveTypeController.swift in Sources */,
-				6930564123C73B6400A092A8 /* LeaveApplicationController.swift in Sources */,
 				69F47DD722E03FB100CA2D54 /* AppDelegate.swift in Sources */,
 				6964A5E423C5E02300439471 /* SuccessPunchInPopup.swift in Sources */,
 				6930564323C74A0E00A092A8 /* ProfileController.swift in Sources */,

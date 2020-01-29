@@ -21,13 +21,12 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
      @IBOutlet weak var imageSliderBirthDay: CPImageSlider!
      @IBOutlet weak var imageSliderAnniversary: CPImageSlider!
     
-    let inset: CGFloat = 10
+       let inset: CGFloat = 10
        let minimumLineSpacing: CGFloat = 10
        let minimumInteritemSpacing: CGFloat = 10
        let cellsPerRow = 2
        var itemWidth:Double = 0.0
-
-    var items: [Item] = []
+       var items: [Item] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

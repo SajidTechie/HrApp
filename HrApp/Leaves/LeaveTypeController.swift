@@ -55,19 +55,17 @@ class LeaveTypeController: UIViewController,UITableViewDataSource, UITableViewDe
     }
     */
 
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return leaves.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       
+        
         let cell:LeaveTypeCell = self.tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as! LeaveTypeCell
          cell.accessoryType = .disclosureIndicator
-        cell.roundView.backgroundColor = self.colors[indexPath.row]
-        cell.leaveTypeLbl.text = self.leaves[indexPath.row]
+         cell.roundView.backgroundColor = self.colors[indexPath.row]
+         cell.leaveTypeLbl.text = self.leaves[indexPath.row]
          cell.leaveDescriptionLbl.text = self.leavesDesc[indexPath.row]
         
         return cell

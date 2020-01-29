@@ -19,13 +19,13 @@ class ProfileController: UIViewController {
         
 //        profileCard.applyGradient(colors: [GradientView.UIColorFromRGB(0x367EB9).cgColor,GradientView.UIColorFromRGB(0x6E6FC7).cgColor,GradientView.UIColorFromRGB(0xDC45E4).cgColor])
     
-//        let sb = UIStoryboard(name: "PunchInPopup", bundle: nil)
-//
-//        let popup = sb.instantiateInitialViewController()  as? PunchInController
-//
-//
-//
-//     self.present(popup!, animated: true)
+        let sb = UIStoryboard(name: "PunchInPopup", bundle: nil)
+
+        let popup = sb.instantiateInitialViewController()  as? PunchInPopup
+
+
+
+     self.present(popup!, animated: true)
         
         
 //        let storyboard = UIStoryboard(name: "LeftPanel", bundle: nil)
