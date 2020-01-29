@@ -11,11 +11,18 @@ import Foundation
 @IBDesignable
 class GradientButton: RoundButton {
 
+<<<<<<< HEAD
 
     @IBInspectable var startColor:   UIColor = UIColor.init(named: "primaryStartGradient") ?? UIColor.cyan { didSet { updateColors() }}
     @IBInspectable var centerColor:   UIColor = UIColor.init(named: "primaryCenterGradient") ?? UIColor.green { didSet { updateColors() }}
     @IBInspectable var endColor:     UIColor = UIColor.init(named: "primaryEndGradient") ?? UIColor.blue { didSet { updateColors() }}
 
+=======
+    @IBInspectable var startColor:   UIColor = UIColor.init(named: "primaryStartGradient") ?? UIColor.cyan { didSet { updateColors() }}
+    @IBInspectable var centerColor:   UIColor = UIColor.init(named: "primaryCenterGradient") ?? UIColor.green { didSet { updateColors() }}
+    @IBInspectable var endColor:     UIColor = UIColor.init(named: "primaryEndGradient") ?? UIColor.blue { didSet { updateColors() }}
+ 
+>>>>>>> 2e4ec8d9ebc7bc21c2e812f8d3777ac7332ee7dc
 
     @IBInspectable var diagonalMode:    Bool =  false { didSet { updatePoints() }}
 
