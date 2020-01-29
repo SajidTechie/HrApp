@@ -12,59 +12,74 @@ class Item {
 }
 
 class HomeController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var catViewHeight: NSLayoutConstraint!
     @IBOutlet weak var btnCheckin: RoundButton!
     let cellIdentifier = "ItemCollectionViewCell"
     
-     @IBOutlet weak var imageSliderBirthDay: CPImageSlider!
-     @IBOutlet weak var imageSliderAnniversary: CPImageSlider!
+    @IBOutlet weak var imageSliderHoliday: CPImageSlider!
+    @IBOutlet weak var imageSliderBirthDay: CPImageSlider!
+    @IBOutlet weak var imageSliderAnniversary: CPImageSlider!
     
     let inset: CGFloat = 10
-       let minimumLineSpacing: CGFloat = 10
-       let minimumInteritemSpacing: CGFloat = 10
-       let cellsPerRow = 2
-       var itemWidth:Double = 0.0
-
+    let minimumLineSpacing: CGFloat = 10
+    let minimumInteritemSpacing: CGFloat = 10
+    let cellsPerRow = 2
+    var itemWidth:Double = 0.0
+    
+    var imgSliderArr = [String]()
     var items: [Item] = []
+    
+    var upcomingAnniversaryElementMain : UpcomingAnniversaryElement!
+    var upcomingAnniversaryArray = [UpcomingAnniversaryData]()
+    
+    var upcomingBirthdaysElementMain : UpcomingBirthdayElement!
+    var upcomingBirthdaysArray = [UpcomingBirthdayData]()
+    
+    var upcomingHolidaysElementMain : HolidayListElement!
+    var upcomingHolidaysArray = [HolidayListData]()
+    
+    var errorData = [ErrorsData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        btnCheckin.GradientButton()
+        imageSliderBirthDay.showOnlyImages = false
+        imageSliderAnniversary.showOnlyImages = false
+        imageSliderHoliday.showOnlyImages = false
         
         imageSliderBirthDay.autoSrcollEnabled = true
         imageSliderAnniversary.autoSrcollEnabled = true
-        imageSliderBirthDay.showOnlyImages = false
-        imageSliderAnniversary.showOnlyImages = false
+        imageSliderHoliday.autoSrcollEnabled = true
         
-        imageSliderBirthDay.isBirthday = true
-        imageSliderAnniversary.isBirthday = false
-        
-//        self.imageSliderBirthDay.strName = ["Sergio Ramos","Walker","Mendy","Rodri","Fernandinho"]
-//        self.imageSliderBirthDay.strDate = ["is celebrating his anniversary on 1st Apr","is celebrating his anniversary on 3rd Dec","is celebrating his anniversary on 2nd march","is celebrating his anniversary on 4th Oct","is celebrating his anniversary on 4th Aug"]
-//
-//        self.imageSliderAnniversary.strName = ["Sergio Aguero","Kevin De bruyne","David Silva","Gabriel","Ederson"]
-//        self.imageSliderAnniversary.strDate = ["is celebrating his birthday on 9th Jan","is celebrating his birthday on 3rd June","is celebrating his birthday on 13th march","is celebrating his birthday on 1st August","is celebrating his birthday on 4th Apr"]
-        
-        self.imageSliderBirthDay.images = ["attendance","report","approval","leaves","expense"]
-        self.imageSliderAnniversary.images = ["attendance","report","approval","leaves","expense"]
-        
-        
-        items = [Item(ImageName: "attendance", CatName: "Attendance"),
-                 Item(ImageName: "report", CatName: "Report"),
-                 Item(ImageName: "approval", CatName: "Approval"),
-                 Item(ImageName: "leaves", CatName: "Leaves"),
-                 Item(ImageName: "announcement", CatName: "Announcement"),
-                 Item(ImageName: "expense", CatName: "Expenses")
-        ]
+        imageSliderBirthDay.isBirthday = 0
+        imageSliderAnniversary.isBirthday = 1
+        imageSliderHoliday.isBirthday = 2
         
         collectionView.dataSource = self
         collectionView.delegate = self
         
         self.collectionView.reloadData()
-
+        
+        if (Utility.isConnectedToNetwork()) {
+            apiUpcomingAnniversaryList()
+            apiUpcomingBirthdaysList()
+            apiUpcomingHolidayList()
+        }
+        else{
+            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+            let anniversaryData =  UserDefaults.standard.value(forKey: "anniversaryData") as? [NSDictionary] ?? []
+            let birthdayData =  UserDefaults.standard.value(forKey: "birthdayData") as? [NSDictionary] ?? []
+            let holidayData =  UserDefaults.standard.value(forKey: "holidayData") as? [NSDictionary] ?? []
+            
+            mergeAnniversaryData(arr: anniversaryData)
+            mergeHolidayData(arr: holidayData)
+            mergeBirthdayData(arr: birthdayData)
+        }
+        
     }
     
     
@@ -85,6 +100,170 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
         }
     }
     
+    //API CALL for anniversary list - - - - - - - -
+    func apiUpcomingAnniversaryList(){
+        let json: [String: Any] = ["ClientID": "string","ClientSecret": "string"]
+        
+        DataManager.shared.makeAPICall(url: AppConstants.PROD_BASE_URL + AppConstants.UPCOMING_ANNIVERSARY, params: json, method: .POST, success: { (response) in
+            let data = response as? Data
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let responseData =   try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    self.upcomingAnniversaryElementMain = try JSONDecoder().decode(UpcomingAnniversaryElement.self, from: data!)
+                    
+                    self.errorData = self.upcomingAnniversaryElementMain.errors ?? []
+                    
+                    if (self.upcomingAnniversaryElementMain.statusCode == 200){
+                        let arr = (responseData as? NSDictionary)?["Data"] as? [NSDictionary]
+                        UserDefaults.standard.set(arr, forKey: "anniversaryData")
+                        print("anniversaryData - - ",arr?.count)
+                        
+                        self.mergeAnniversaryData(arr: arr!)
+                    }
+                    
+                }
+                catch let errorData {
+                    print(errorData.localizedDescription)
+                }
+                
+            }
+            
+        }) { (Error) in
+            ViewControllerUtils.sharedInstance.removeLoader()
+            print(Error?.localizedDescription)
+        }
+    }
+    
+    // Api call for holiday list  - - - - - - - - -
+    func apiUpcomingHolidayList(){
+        let json: [String: Any] = ["ClientID": "string","ClientSecret": "string"]
+        
+        DataManager.shared.makeAPICall(url: AppConstants.PROD_BASE_URL + AppConstants.UPCOMING_HOLIDAY, params: json, method: .POST, success: { (response) in
+            let data = response as? Data
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let responseData = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    self.upcomingHolidaysElementMain = try JSONDecoder().decode(HolidayListElement.self, from: data!)
+                    
+                    self.errorData = self.upcomingHolidaysElementMain.errors ?? []
+                    
+                    if (self.upcomingHolidaysElementMain.statusCode == 200){
+                        let arr = (responseData as? NSDictionary)?["Data"] as? [NSDictionary]
+                        UserDefaults.standard.set(arr, forKey: "holidayData")
+                        print("holidayData - - ",arr?.count)
+                        
+                        self.mergeHolidayData(arr: arr!)
+                        
+                    }
+                    
+                }
+                catch let errorData {
+                    print(errorData.localizedDescription)
+                }
+            }
+            
+        }) { (Error) in
+            ViewControllerUtils.sharedInstance.removeLoader()
+            print(Error?.localizedDescription)
+            
+        }
+    }
+    
+    
+    // Api call for birthday list  - - - - - - - - -
+    func apiUpcomingBirthdaysList(){
+        let json: [String: Any] = ["ClientID": "string","ClientSecret": "string"]
+        
+        DataManager.shared.makeAPICall(url: AppConstants.PROD_BASE_URL + AppConstants.UPCOMING_BIRTHDAYS, params: json, method: .POST, success: { (response) in
+            let data = response as? Data
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    let responseData = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    self.upcomingBirthdaysElementMain = try JSONDecoder().decode(UpcomingBirthdayElement.self, from: data!)
+                    self.upcomingBirthdaysArray = self.upcomingBirthdaysElementMain.data ?? []
+                    self.errorData = self.upcomingBirthdaysElementMain.errors ?? []
+                    
+                    if (self.upcomingBirthdaysElementMain.statusCode == 200){
+                        let arr = (responseData as? NSDictionary)?["Data"] as? [NSDictionary]
+                        UserDefaults.standard.set(arr, forKey: "birthdayData")
+                        print("birthdayData - - ",arr?.count)
+                        
+                        self.mergeBirthdayData(arr: arr!)
+                        
+                    }
+                    
+                }
+                catch let errorData {
+                    print(errorData.localizedDescription)
+                }
+                
+            }
+            
+        }) { (Error) in
+            ViewControllerUtils.sharedInstance.removeLoader()
+            print(Error?.localizedDescription)
+            
+        }
+    }
+    
+    
+    func mergeBirthdayData(arr:[NSDictionary]){
+        var BirthNameArray: [String] = []
+        var BirthDateArray: [String] = []
+        
+        for (birth) in arr {
+            let BirthName: String? = birth.value(forKey: "EmployeeName") as? String
+            BirthNameArray.append(BirthName ?? "-")
+            
+            let BirthDate: String? = birth.value(forKey: "Birthdate") as? String
+            BirthDateArray.append(BirthDate ?? "-")
+        }
+        
+        self.imageSliderBirthDay.labelStr = BirthNameArray
+        self.imageSliderBirthDay.labelDate = BirthDateArray
+        self.imageSliderBirthDay.images = BirthDateArray
+    }
+    
+    func mergeAnniversaryData(arr:[NSDictionary]){
+        var annvNameArray: [String] = []
+        var annvDateArray: [String] = []
+        
+        for (anniversary) in arr {
+            let annvName: String? = anniversary.value(forKey: "EmployeeName") as? String
+            annvNameArray.append(annvName ?? "-")
+            
+            let annvDate: String? = anniversary.value(forKey: "Anniversarydate") as? String
+            annvDateArray.append(annvDate ?? "-")
+        }
+        
+        self.imageSliderAnniversary.labelStr = annvNameArray
+        self.imageSliderAnniversary.labelDate = annvDateArray
+        self.imageSliderAnniversary.images = annvNameArray
+    }
+    
+    func mergeHolidayData(arr:[NSDictionary]){
+        var holNameArray: [String] = []
+        var holDateArray: [String] = []
+        
+        for (holiday) in arr {
+            let holName: String? = holiday.value(forKey: "HolidayName") as? String
+            holNameArray.append(holName ?? "-")
+            
+            let holDate: String? = holiday.value(forKey: "HolidayFromDate") as? String
+            holDateArray.append(holDate ?? "-")
+        }
+        
+        self.imageSliderHoliday.labelStr = holNameArray
+        self.imageSliderHoliday.labelDate = holDateArray
+        self.imageSliderHoliday.images = holNameArray
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return items.count
@@ -98,11 +277,11 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
         cell.imageView.image = UIImage(named:items[indexPath.item].ImageName)
         
         return cell
-        }
+    }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      print("index(/indexPath)")
+        print("index(/indexPath)")
     }
     
     

@@ -1923,13 +1923,18 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zVr-wD-SJI">
                                                 <rect key="frame" x="0.0" y="590" width="414" height="70"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhj-AY-riq" customClass="RoundButton" customModule="HrApp" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhj-AY-riq" customClass="GradientButton" customModule="HrApp" customModuleProvider="target">
                                                         <rect key="frame" x="133" y="20" width="150" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="150" id="GYP-3j-YWr"/>
                                                             <constraint firstAttribute="height" constant="30" id="iBT-Th-PZm"/>
                                                         </constraints>
                                                         <state key="normal" title="Submit"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="tapSubmit:" destination="uG0-dS-r6h" eventType="touchUpInside" id="sPr-A6-Yns"/>
                                                         </connections>

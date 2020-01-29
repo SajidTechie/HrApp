@@ -10,13 +10,17 @@ import UIKit
 import FirebaseAnalytics
 import CoreLocation
 
-class LoginController: UIViewController , UITextFieldDelegate{
+class LoginController: UIViewController,UITextFieldDelegate{
   
     @IBOutlet weak var edtCin: UITextField!
     @IBOutlet weak var edtPassword: UITextField!
     @IBOutlet weak var btnSignUp: UIButton!
     @IBOutlet weak var vwLoginContainer: UIView!
     @IBOutlet weak var captchaView: CaptchaView!
+    
+    var login : LoginElement!
+    var loginDataNew : [LoginData]?
+    var loginData : [LoginData]?
    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var strToken = ""

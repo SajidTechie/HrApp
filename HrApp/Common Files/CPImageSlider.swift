@@ -46,7 +46,7 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
     var durationTime : TimeInterval = 2.0
     
     var showOnlyImages = true
-    var isBirthday:Bool = false
+    var isBirthday:Int = 0 // ---  birthday -0 , anniversary - 1, holiday -2
     
     var images = [String](){
         didSet{
@@ -56,6 +56,10 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
             addImagesOnScrollView()
         }
     }
+    
+    
+    var labelStr = [String]()
+    var labelDate = [String]()
     
     var enableSwipe : Bool = false{
         didSet{
@@ -180,6 +184,15 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
     
     func addImagesOnScrollView()
     {
+        var mainStr = ""
+        if (isBirthday == 0){
+            mainStr = "\n dfgsdfgsdfgsdfg dfgasrfweris celebrating his/her birthday on "
+        }else if(isBirthday == 1){
+            mainStr = "\n is celebrating his/her anniversary on "
+        }else{
+          mainStr = "\n"
+        }
+        
         for sub in myScrollView.subviews
         {
             sub.removeFromSuperview()
@@ -193,15 +206,19 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
         {
             count += 2
         }
+        
+        print("LabelStr - - - ",labelStr)
+        print("LabelDate - - - ",labelDate)
+        
         for index in 0..<count
         {
             let viewV = getView(index: index)
-            viewV.frame = CGRect(x: CGFloat(index)*bounds.width, y: 0, width: bounds.width, height: bounds.height-bottomImagePadding)
+            viewV.frame = CGRect(x: CGFloat(index)*frame.width, y: 0, width: frame.width, height: bounds.height-bottomImagePadding)
             
             var imageV = UIImageView()
             if(showOnlyImages){
                 imageV = getImageView(index: index)
-                imageV.frame = CGRect(x: CGFloat(index)*bounds.width, y: 0, width: bounds.width, height: bounds.height-bottomImagePadding)
+                imageV.frame = CGRect(x: CGFloat(index)*frame.width, y: 0, width: frame.width, height: bounds.height-bottomImagePadding)
             }else{
                 imageV.layer.borderWidth = 1
                 imageV.layer.masksToBounds = false
@@ -214,31 +231,11 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
             let labelV = UILabel()
             labelV.textAlignment = .center
             labelV.numberOfLines = 0
-            labelV.frame = CGRect(x: 100, y: -20, width: bounds.width - 100, height: bounds.height)
-            
-            var str1 = ""
-            var str2 = ""
-            
-            if(isBirthday){
-                str1 = "Akshay Shetty"
-                str2 = "\nis celebrating his/her birthday on 10th jan"
-            }else{
-                str1 = "Shetty Ille"
-                str2 = "\nis celebrating his/her anniversary on 20th jan"
-            }
-            
-            let attr1 = [NSAttributedString.Key.foregroundColor: UIColor.init(named: "FontDarkText"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
-            let attr2 = [NSAttributedString.Key.foregroundColor: UIColor.init(named: "FontLightText"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
-            
-            let partOne = NSMutableAttributedString(string: str1, attributes: attr1)
-            let partTwo = NSMutableAttributedString(string: str2, attributes: attr2)
-         
-            let combination = NSMutableAttributedString()
-            combination.append(partOne)
-            combination.append(partTwo)
+            labelV.frame = CGRect(x: 100, y: -20, width: frame.width - 150, height: frame.height)
+          
             
             if(showOnlyImages){
-                imageV.frame = CGRect(x: 0, y: 0, width: bounds.width, height: bounds.height)
+                imageV.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
                 labelV.isHidden = true
             }else{
                 imageV.frame = CGRect(x: 20, y: 30, width: 70, height: 70)
@@ -251,11 +248,10 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                 if index == 0 {
                     if let imageUrlString = images.last, let url = URL(string: imageUrlString), imageUrlString.isValidURL {
                         imageV.sd_setImage(with: url, placeholderImage: defaultBanner, options: .refreshCached, completed: nil)
-                        //                        labelV.text = "dahuyfgasuydfg asudhyfuasdf sdfhasudhfasdf asp;dfhaisudfhas fasudfhasuidhfas['df asdfhuasdfhasudfhasdufhasdhfasldkfhadjklsfa'sdjfaios'dfjuasdfua"
-                        labelV.attributedText = combination
+                        labelV.text = "No Data Available"
                     } else{
                         imageV.image = UIImage(named:images.last!)
-                        labelV.attributedText = combination
+                        labelV.attributedText = getStringSpan(str1: labelStr.last!, str2: (mainStr + labelDate.last!))
                     }
                     
                     //imageV.image = UIImage(named:images.last!)
@@ -264,10 +260,10 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                 {
                     if let imageUrlString = images.first, let url = URL(string: imageUrlString), imageUrlString.isValidURL {
                         imageV.sd_setImage(with: url, placeholderImage: defaultBanner, options: .refreshCached, completed: nil)
-                        labelV.attributedText = combination
+                        labelV.text = "No Data Available"
                     } else{
                         imageV.image = UIImage(named:images.first!)
-                        labelV.attributedText = combination
+                        labelV.attributedText = getStringSpan(str1: labelStr.first!, str2: (mainStr + labelDate.first!))
                     }
                     
                     
@@ -276,10 +272,10 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                 {
                     if let url = URL(string: images[index - 1]), images[index - 1].isValidURL {
                         imageV.sd_setImage(with: url, placeholderImage: defaultBanner, options: .refreshCached, completed: nil)
-                        labelV.attributedText = combination
+                        labelV.text = "No Data Available"
                     } else{
                         imageV.image = UIImage(named:images[index - 1])
-                        labelV.attributedText = combination
+                        labelV.attributedText = getStringSpan(str1: labelStr[index-1], str2: (mainStr + labelDate[index-1]))
                     }
                     
                 }
@@ -288,10 +284,10 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
             {
                 if let url = URL(string: images[index]), images[index].isValidURL {
                     imageV.sd_setImage(with: url, placeholderImage: defaultBanner, options: .refreshCached, completed: nil)
-                    labelV.attributedText = combination
+                    labelV.text = "No Data Available"
                 } else{
                     imageV.image = UIImage(named:images[index])
-                    labelV.attributedText = combination
+                    labelV.attributedText = getStringSpan(str1: labelStr[index], str2: (mainStr + labelDate[index]))
                 }
                 
                 
@@ -312,6 +308,22 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
         }
         myScrollView.contentSize = CGSize(width: bounds.width*CGFloat(count), height: (bounds.height-bottomImagePadding))
         adjustContentOffsetFor(index: currentIndex, offsetIndex: convertIndex(), animated: false)
+    }
+    
+    // - - - - - Spannable string - - - - - -  -
+    func getStringSpan(str1:String,str2:String) -> NSMutableAttributedString{
+     
+        let attr1 = [NSAttributedString.Key.foregroundColor: UIColor.init(named: "FontDarkText"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
+        let attr2 = [NSAttributedString.Key.foregroundColor: UIColor.init(named: "FontLightText"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
+        
+        let partOne = NSMutableAttributedString(string: str1, attributes: attr1)
+        let partTwo = NSMutableAttributedString(string: str2, attributes: attr2)
+        
+        let combination = NSMutableAttributedString()
+        combination.append(partOne)
+        combination.append(partTwo)
+        
+        return combination
     }
     
     

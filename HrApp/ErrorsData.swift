@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct ErrorData : Codable {
+struct ErrorsData : Codable {
     let errorCode : Int?
     let errorMsg : String?
     let parameter : String?

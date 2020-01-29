@@ -36,8 +36,8 @@ class SplashScreenController: AVPlayerViewController {
 //            // add notification observers
             NotificationCenter.default.addObserver(self, selector: #selector(self.didBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-//
-//            view.backgroundColor = UIColor.white
+
+         //   view.backgroundColor = UIColor.white
     //        Analytics.setScreenName("SPLASH SCREEN", screenClass: "SplashViewController")
            // SQLiteDB.instance.addAnalyticsData(ScreenName: "SPLASH SCREEN", ScreenId: Int64(GlobalConstants.init().SPLASH))
         }
@@ -168,16 +168,16 @@ class SplashScreenController: AVPlayerViewController {
 //            let vcMap = storyBoard.instantiateViewController(withIdentifier: "StatisticViewController") as! StatisticViewController
 //            self.navigationController!.pushViewController(vcMap, animated: true)
             
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
-            let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
-            self.navigationController!.pushViewController(vcHome, animated: true)
+//            let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+//            let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
+//            self.navigationController!.pushViewController(vcHome, animated: true)
 
 //            let storyBoard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
 //                               let vcIntro = storyBoard.instantiateViewController(withIdentifier: "IntroScreenController") as! IntroScreenController
 //                               self.navigationController!.pushViewController(vcIntro, animated: false)
             
             
-              /*  if (UserDefaults.standard.value(forKey: "Intro") == nil){
+                if (UserDefaults.standard.value(forKey: "Intro") == nil){
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
                     let vcIntro = storyBoard.instantiateViewController(withIdentifier: "IntroScreenController") as! IntroScreenController
                     self.navigationController!.pushViewController(vcIntro, animated: false)
@@ -192,7 +192,7 @@ class SplashScreenController: AVPlayerViewController {
                               let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
                               self.navigationController!.pushViewController(vcHome, animated: true)
                     }
-                }*/
+                }
 
         }
         

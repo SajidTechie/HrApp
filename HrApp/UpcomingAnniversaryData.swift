@@ -1,5 +1,5 @@
 //
-//  UpcomingBirthdaysData.swift
+//  UpcomingAnniversaryData.swift
 //  HrApp
 //
 //  Created by Goldmedal on 1/15/20.
@@ -14,10 +14,9 @@ struct UpcomingAnniversaryElement : Codable {
     let timestamp : String?
     let size : Int?
     let data : [UpcomingAnniversaryData]?
-    let errors : [String]?
+    let errors : [ErrorsData]?
 
     enum CodingKeys: String, CodingKey {
-
         case version = "Version"
         case statusCode = "StatusCode"
         case statusCodeMessage = "StatusCodeMessage"
@@ -35,7 +34,7 @@ struct UpcomingAnniversaryElement : Codable {
         timestamp = try values.decodeIfPresent(String.self, forKey: .timestamp)
         size = try values.decodeIfPresent(Int.self, forKey: .size)
         data = try values.decodeIfPresent([UpcomingAnniversaryData].self, forKey: .data)
-        errors = try values.decodeIfPresent([String].self, forKey: .errors)
+        errors = try values.decodeIfPresent([ErrorsData].self, forKey: .errors)
     }
 
 }
