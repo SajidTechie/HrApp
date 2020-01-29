@@ -102,6 +102,15 @@ public class Utility {
     }
     
     
+    class func getDeviceId() -> String{
+           var deviceId = ""
+            deviceId = UIDevice.current.identifierForVendor!.uuidString
+               if(deviceId.isEqual("")){
+                   deviceId = "-"
+               }
+           return deviceId
+       }
+    
     
     class func currDate() -> String{
         //Get current date

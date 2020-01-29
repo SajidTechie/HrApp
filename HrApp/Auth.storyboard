@@ -34,7 +34,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dM-Ee-RjL" userLabel="vwLoginContent">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="CIN" textAlignment="center" minimumFontSize="13" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Jd8-nj-ab3" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email ID/ Mobile No." textAlignment="center" minimumFontSize="13" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Jd8-nj-ab3" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="60" width="335" height="40"/>
                                                 <color key="tintColor" name="LoginButton"/>
                                                 <constraints>
@@ -58,7 +58,7 @@
                                                     <outlet property="delegate" destination="dty-TG-kqs" id="j4Q-lX-FJj"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="PASSWORD" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="24c-gc-A0z" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="24c-gc-A0z" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="120" width="335" height="40"/>
                                                 <color key="tintColor" name="LoginButton"/>
                                                 <constraints>
@@ -114,21 +114,8 @@
                                                     <action selector="onLoginClicked:" destination="dty-TG-kqs" eventType="touchUpInside" id="Jsa-Qp-vua"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGh-uo-Epx">
-                                                <rect key="frame" x="20" y="350" width="44" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="20" id="jHM-Fo-0XK"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
-                                                <state key="normal" title="Sign Up">
-                                                    <color key="titleColor" name="FontDarkText"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="clicked_newUser:" destination="dty-TG-kqs" eventType="touchUpInside" id="BiE-bR-u00"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWg-3D-fDQ">
-                                                <rect key="frame" x="256" y="350" width="99" height="20"/>
+                                                <rect key="frame" x="258" y="350" width="97" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="c0Q-gZ-Auf"/>
                                                 </constraints>
@@ -144,7 +131,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="NWg-3D-fDQ" firstAttribute="top" secondItem="2WZ-19-7ck" secondAttribute="bottom" constant="10" id="DfU-69-gyb"/>
-                                            <constraint firstItem="cGh-uo-Epx" firstAttribute="leading" secondItem="7dM-Ee-RjL" secondAttribute="leading" constant="20" id="I5C-1D-jIX"/>
                                             <constraint firstAttribute="trailing" secondItem="NWg-3D-fDQ" secondAttribute="trailing" constant="20" id="IPG-Mo-Jyu"/>
                                             <constraint firstAttribute="trailing" secondItem="24c-gc-A0z" secondAttribute="trailing" constant="20" id="LM4-Vw-VLH"/>
                                             <constraint firstItem="24c-gc-A0z" firstAttribute="top" secondItem="Jd8-nj-ab3" secondAttribute="bottom" constant="20" id="NTV-92-dfR"/>
@@ -157,7 +143,6 @@
                                             <constraint firstItem="Jd8-nj-ab3" firstAttribute="top" secondItem="7dM-Ee-RjL" secondAttribute="top" constant="60" id="d7D-N7-jBh"/>
                                             <constraint firstAttribute="trailing" secondItem="2WZ-19-7ck" secondAttribute="trailing" constant="20" id="eM4-3b-eK2"/>
                                             <constraint firstItem="2WZ-19-7ck" firstAttribute="top" secondItem="4dz-oF-XSb" secondAttribute="bottom" constant="20" id="khM-Tl-02z"/>
-                                            <constraint firstItem="cGh-uo-Epx" firstAttribute="top" secondItem="2WZ-19-7ck" secondAttribute="bottom" constant="10" id="t3K-HO-1dD"/>
                                             <constraint firstItem="2WZ-19-7ck" firstAttribute="leading" secondItem="7dM-Ee-RjL" secondAttribute="leading" constant="20" id="xwA-Rp-qUV"/>
                                         </constraints>
                                     </view>
@@ -227,7 +212,7 @@
             </objects>
             <point key="canvasLocation" x="-3354" y="-374"/>
         </scene>
-        <!--Sign Up-->
+        <!--User Details-->
         <scene sceneID="hrL-1w-r4u">
             <objects>
                 <viewController storyboardIdentifier="ForgotPasswordController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kFG-vQ-QzH" customClass="ForgotPasswordController" customModule="HrApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -241,7 +226,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZ5-4u-6pF" userLabel="vwSignUpContent">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your CIN number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czu-WN-wEW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your details" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Czu-WN-wEW">
                                         <rect key="frame" x="20" y="20" width="335" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
                                         <color key="textColor" name="FontDarkText"/>
@@ -270,7 +255,7 @@
                                             <action selector="onClickSubmit:" destination="kFG-vQ-QzH" eventType="touchUpInside" id="mBS-Hv-sx4"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="ENTER CIN" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qFg-hl-KQC" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Email ID/ Mobile No." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qFg-hl-KQC" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
                                         <rect key="frame" x="20" y="56.5" width="335" height="40"/>
                                         <color key="tintColor" name="LoginButton"/>
                                         <constraints>
@@ -329,7 +314,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WCd-v5-gag"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Sign Up" id="kI0-b1-3uc">
+                    <navigationItem key="navigationItem" title="User Details" id="kI0-b1-3uc">
                         <barButtonItem key="leftBarButtonItem" image="back" id="kF1-U8-Lgi" userLabel="Menu Outstanding">
                             <color key="tintColor" name="FontDarkText"/>
                             <connections>
@@ -379,25 +364,25 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait while we verify your number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="if6-8u-ZSb">
-                                        <rect key="frame" x="20" y="43.5" width="335" height="14"/>
+                                        <rect key="frame" x="20" y="43.5" width="335" height="14.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                         <color key="textColor" name="FontDarkText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcd@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-gS-4UQ">
-                                        <rect key="frame" x="20" y="77.5" width="335" height="15.5"/>
+                                        <rect key="frame" x="20" y="78" width="335" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" name="FontLightText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="63456237562" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1J-3e-Mxc">
-                                        <rect key="frame" x="20" y="98" width="335" height="15.5"/>
+                                        <rect key="frame" x="20" y="98.5" width="335" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" name="FontLightText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="REQ NO" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="4cS-UI-JmP" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="133.5" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="134" width="335" height="40"/>
                                         <color key="tintColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="yxz-c0-xVU"/>
@@ -418,7 +403,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="ENTER OTP" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="SHQ-or-bcy" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="193.5" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="194" width="335" height="40"/>
                                         <color key="tintColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="OGb-1D-Oy1"/>
@@ -439,7 +424,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change CIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qnc-Mt-6Wt">
-                                        <rect key="frame" x="20" y="243.5" width="66" height="14"/>
+                                        <rect key="frame" x="20" y="244" width="63.5" height="14"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                         <color key="textColor" name="FontDarkText"/>
                                         <nil key="highlightedColor"/>
@@ -451,7 +436,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2i-Hl-UPH" customClass="RoundButton" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="277.5" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="278" width="335" height="40"/>
                                         <color key="backgroundColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="yol-dl-u18"/>
@@ -547,7 +532,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJM-op-rRg">
                                         <rect key="frame" x="20" y="60" width="335" height="220"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="OLD PASSWORD" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="8mP-T1-9WU" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Old Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="8mP-T1-9WU" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
                                                 <color key="tintColor" name="LoginButton"/>
                                                 <constraints>
@@ -568,7 +553,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="NEW PASSWORD" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="CgJ-aP-JlW" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="New Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="CgJ-aP-JlW" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="60" width="335" height="40"/>
                                                 <color key="tintColor" name="LoginButton"/>
                                                 <constraints>
@@ -589,7 +574,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="CONFIRM PASSWORD" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="nz0-nu-e0J" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Confirm Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="nz0-nu-e0J" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="120" width="335" height="40"/>
                                                 <color key="tintColor" name="LoginButton"/>
                                                 <constraints>
@@ -762,10 +747,10 @@
             <color red="0.3580000102519989" green="0.3580000102519989" blue="0.3580000102519989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="FontDarkText">
-            <color red="0.27700001001358032" green="0.27300000190734863" blue="0.27300000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="FontDarkText">
-            <color red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.27700001001358032" green="0.27300000190734863" blue="0.27300000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="FontLightText">
             <color red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

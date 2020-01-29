@@ -189,8 +189,8 @@ class SplashScreenController: AVPlayerViewController {
                         self.navigationController!.pushViewController(vcLogin, animated: false)
                     }else{
                         let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
-                              let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
-                              self.navigationController!.pushViewController(vcHome, animated: true)
+                        let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
+                        self.navigationController!.pushViewController(vcHome, animated: true)
                     }
                 }
 

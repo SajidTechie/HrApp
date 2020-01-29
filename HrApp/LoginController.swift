@@ -19,8 +19,8 @@ class LoginController: UIViewController,UITextFieldDelegate{
     @IBOutlet weak var captchaView: CaptchaView!
     
     var login : LoginElement!
-    var loginDataNew : [LoginData]?
-    var loginData : [LoginData]?
+    var errorData : [ErrorsData]?
+    var loginData : [NSDictionary]?
    
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var strToken = ""
@@ -31,8 +31,7 @@ class LoginController: UIViewController,UITextFieldDelegate{
     var appVersion = ""
     var osVersion = ""
     var ipAddress = ""
-    var deviceId = ""
-    
+   
     var loginApi=""
     
     var lastCin = ""
@@ -55,9 +54,7 @@ class LoginController: UIViewController,UITextFieldDelegate{
         } else {
             if(captchaView.checkCaptcha()){
                 if (Utility.isConnectedToNetwork()) {
-                    let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
-                                                 let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
-                                                 self.navigationController!.pushViewController(vcHome, animated: true)
+                   apiLogin()
                 }
                 else{
                     var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
@@ -69,6 +66,75 @@ class LoginController: UIViewController,UITextFieldDelegate{
             }
         }
     }
+    
+    
+    func apiLogin(){
+         ViewControllerUtils.sharedInstance.showLoader()
+        
+        let json: [String: Any] =  [
+                 "UserName":(edtCin.text ?? "")!,
+                 "Password":(edtPassword.text ?? "")!,
+                 "deviceid": Utility.getDeviceId(),
+                 "DeviceType": "Ios",
+                 "AppVersion": appVersion,
+                 "OSVersion": osVersion,
+                 "pooswooshid": strToken,
+                 "IP": ipAddress,
+                 "Lat": String(mLat),
+                 "Lng": String(mLong),
+                 "AppType": "string",
+                 "ModalType": "string",
+                 "ClientID": "string",
+                 "ClientSecret": "string"
+        ]
+       
+         print("LOGIN - - - - -",json)
+         
+         let manager =  DataManager.shared
+         
+         manager.makeAPICall(url: loginApi, params: json, method: .POST, success: { (response) in
+              let data = response as? Data
+             print("loginApi - - - - - ",self.loginApi,"-----",json)
+             
+             do {
+             let responseData = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                 
+             self.login = try JSONDecoder().decode(LoginElement.self, from: data!)
+                 
+             let statusCode = self.login?.statusCode
+            
+             self.errorData = self.login?.errors
+                
+            var errMsg = ""
+             if(!(self.errorData?.isEmpty ?? true)){
+             errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
+             }
+                
+             if (statusCode == 200)
+             {
+                 self.loginData = (responseData as? NSDictionary)?["Data"] as? [NSDictionary]
+                 UserDefaults.standard.set(self.loginData, forKey: "anniversaryData")
+                
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+                    let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
+                    self.navigationController!.pushViewController(vcHome, animated: true)
+             }else{
+                var alert = UIAlertView(title: "Error", message: errMsg, delegate: nil, cancelButtonTitle: "OK")
+                 alert.show()
+                 }
+                 ViewControllerUtils.sharedInstance.removeLoader()
+             } catch let errorData {
+               
+                 print(errorData.localizedDescription)
+                 ViewControllerUtils.sharedInstance.removeLoader()
+             }
+         }) { (Error) in
+             ViewControllerUtils.sharedInstance.removeLoader()
+             print(Error?.localizedDescription)
+            
+         }
+    
+     }
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +154,8 @@ class LoginController: UIViewController,UITextFieldDelegate{
         
         locationManager.requestLocation()
         
+        loginApi = AppConstants.PROD_BASE_URL + AppConstants.LOGIN
+        
         print("IP ADDRESS - - - - ",getIPAddress())
         
         ipAddress = (getIPAddress() ?? "-")!
@@ -98,11 +166,6 @@ class LoginController: UIViewController,UITextFieldDelegate{
         }
         
         print("STR TOKEN",(strToken))
-        
-        deviceId = UIDevice.current.identifierForVendor!.uuidString
-        if(deviceId.isEqual("")){
-            deviceId = "-"
-        }
       
         osVersion = UIDevice.current.systemVersion
         if(osVersion.isEqual("")){

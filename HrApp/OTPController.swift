@@ -28,8 +28,14 @@ class OtpController: UIViewController {
     var strMobileNumber = String()
     var strCin = String()
     
-    var otpApi=""
-    var verifyApi=""
+    var verifyOtpElement : VerifyOtpElement!
+    var verifyOtpData : [VerifyOtpData]?
+    var verifyApi = ""
+    
+    var getOtpElement : GetOtpElement!
+    var errorData : [ErrorsData]?
+    var getOtpData : [GetOtpData]?
+    var getOtpApi = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +44,12 @@ class OtpController: UIViewController {
         
         startTimer()
         
+        getOtpApi = AppConstants.PROD_BASE_URL + AppConstants.GET_OTP
+        verifyApi = AppConstants.PROD_BASE_URL + AppConstants.VERIFY_OTP
+        
         var strEmail = ""
         var strMobile = ""
-      
+        
         var chars : Array<Character> = Array()
         var arr : [Substring] = []
         
@@ -72,7 +81,7 @@ class OtpController: UIViewController {
             strMobile = strMobileNumber
         }
         lblContactNo.text = strMobile
-       
+        
         let resendOtp = UITapGestureRecognizer(target: self, action: #selector(self.tapResendOtp))
         lblTimer.addGestureRecognizer(resendOtp)
         
@@ -80,16 +89,71 @@ class OtpController: UIViewController {
         lblChangeCin.addGestureRecognizer(changeCin)
         
         if(self.callFrom == "ChangePassword" || self.callFrom == "ForgotMpin"){
-          lblChangeCin.isHidden = true
+            lblChangeCin.isHidden = true
         }else{
-          lblChangeCin.isHidden = false
+            lblChangeCin.isHidden = false
         }
         
-      
+        
         
     }
     
-
+    // - - - - - - - - - - - - - get otp api - - - - - - - - - - - -
+    func apiGetOtp(){
+        ViewControllerUtils.sharedInstance.showLoader()
+        
+        let json: [String: Any] =  [
+            "MobileNo": strMobileNumber,
+            "deviceid": Utility.getDeviceId(),
+            "ClientID": "string",
+            "ClientSecret": "string"
+        ]
+        
+        
+        print("getOtp - - - - -",json)
+        
+        let manager =  DataManager.shared
+        
+        manager.makeAPICall(url: getOtpApi, params: json, method: .POST, success: { (response) in
+            let data = response as? Data
+            print("getOtpApi - - - - - ",self.getOtpApi,"-----",json)
+            
+            do {
+                
+                self.getOtpElement = try JSONDecoder().decode(GetOtpElement.self, from: data!)
+                self.getOtpData = self.getOtpElement.data
+                
+                let statusCode = self.getOtpElement?.statusCode
+                
+                self.errorData = self.getOtpElement?.errors
+                
+               var errMsg = ""
+                if(!(self.errorData?.isEmpty ?? true)){
+                errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
+                }
+                
+                if (statusCode == 200)
+                {
+                    var alert = UIAlertView(title: "Success", message: "Otp Send Successfully", delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                }else{
+                    var alert = UIAlertView(title: "Error", message: errMsg, delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                }
+                ViewControllerUtils.sharedInstance.removeLoader()
+            } catch let errorData {
+                
+                print(errorData.localizedDescription)
+                ViewControllerUtils.sharedInstance.removeLoader()
+            }
+        }) { (Error) in
+            ViewControllerUtils.sharedInstance.removeLoader()
+            print(Error?.localizedDescription)
+            
+        }
+        
+    }
+    
     
     @objc func tapResendOtp(sender:UITapGestureRecognizer) {
         print("tap working",countDownStopped)
@@ -99,7 +163,7 @@ class OtpController: UIViewController {
             lblTimer.text = "02:00"
             totalTime = 120
             startTimer()
-           // apiNewUser()
+            apiGetOtp()
         }
     }
     
@@ -115,7 +179,7 @@ class OtpController: UIViewController {
     }
     
     @objc func updateTime() {
-
+        
         lblTimer.text = "\(timeFormatted(totalTime))"
         
         if totalTime != 0 {
@@ -132,7 +196,7 @@ class OtpController: UIViewController {
         if #available(iOS 11.0, *) {
             lblTimer.textColor = UIColor.init(named: "ColorRed")
         } else {
-           lblTimer.textColor = UIColor.red
+            lblTimer.textColor = UIColor.red
         }
     }
     
@@ -168,12 +232,62 @@ class OtpController: UIViewController {
         
     }
     
+    // - - - - - - - verify otp api - - - - - - - - -
     func apiValidateOtp(){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
-               let vcSetPassword = storyBoard.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
-               self.navigationController!.pushViewController(vcSetPassword, animated: true)
+        
+        ViewControllerUtils.sharedInstance.showLoader()
+               
+               let json: [String: Any] =  [
+                   "MobileNo": strMobileNumber,
+                   "Otp": (edtOtp.text ?? "")!,
+                   "RequestNo": (edtReqNo.text ?? "")!,
+                   "deviceid": Utility.getDeviceId(),
+                   "ClientID": "string",
+                   "ClientSecret": "string"
+               ]
+               
+               let manager =  DataManager.shared
+               
+               manager.makeAPICall(url: verifyApi, params: json, method: .POST, success: { (response) in
+                   let data = response as? Data
+                   print("verifyOtpApi - - - - - ",self.verifyApi,"-----",json)
+                   
+                   do {
+                       
+                       self.verifyOtpElement = try JSONDecoder().decode(VerifyOtpElement.self, from: data!)
+                       self.verifyOtpData = self.verifyOtpElement.data
+                       
+                       let statusCode = self.verifyOtpElement?.statusCode
+                       
+                       self.errorData = self.verifyOtpElement?.errors
+                       
+                       var errMsg = ""
+                       if(!(self.errorData?.isEmpty ?? true)){
+                       errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
+                       }
+                       
+                       if (statusCode == 200)
+                       {
+                           let storyBoard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
+                           let vcSetPassword = storyBoard.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
+                           self.navigationController!.pushViewController(vcSetPassword, animated: true)
+                       }else{
+                           var alert = UIAlertView(title: "Error", message: errMsg, delegate: nil, cancelButtonTitle: "OK")
+                           alert.show()
+                       }
+                       ViewControllerUtils.sharedInstance.removeLoader()
+                   } catch let errorData {
+                       
+                       print(errorData.localizedDescription)
+                       ViewControllerUtils.sharedInstance.removeLoader()
+                   }
+               }) { (Error) in
+                   ViewControllerUtils.sharedInstance.removeLoader()
+                   print(Error?.localizedDescription)
+                   
+               }
     }
     
     
-  
+    
 }
