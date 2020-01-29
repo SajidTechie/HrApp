@@ -8,6 +8,7 @@
 
 import UIKit
 import AVKit
+import FirebaseAnalytics
 
 class SplashScreenController: AVPlayerViewController {
 
@@ -19,22 +20,22 @@ class SplashScreenController: AVPlayerViewController {
         override func viewDidLoad() {
             super.viewDidLoad()
          
-            continueInsideApp()
+          //  continueInsideApp()
             
             // Do any additional setup after loading the view.
-//            let path = Bundle.main.path(forResource: "logo_splash1", ofType: "mp4")
-//            let videoURL = URL(fileURLWithPath: path!)
-//            player = AVPlayer(url: videoURL)
-//            showsPlaybackControls = false
-//
-//            NotificationCenter.default.addObserver(self,
-//                                                   selector: #selector(self.animationDidFinish(_:)),
-//                                                   name: .AVPlayerItemDidPlayToEndTime,
-//                                                   object: player?.currentItem)
+            let path = Bundle.main.path(forResource: "Logo_01", ofType: "mp4")
+            let videoURL = URL(fileURLWithPath: path!)
+            player = AVPlayer(url: videoURL)
+            showsPlaybackControls = false
+
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(self.animationDidFinish(_:)),
+                                                   name: .AVPlayerItemDidPlayToEndTime,
+                                                   object: player?.currentItem)
 //
 //            // add notification observers
-//            NotificationCenter.default.addObserver(self, selector: #selector(self.didBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
-//            NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.didBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
 //
 //            view.backgroundColor = UIColor.white
     //        Analytics.setScreenName("SPLASH SCREEN", screenClass: "SplashViewController")
