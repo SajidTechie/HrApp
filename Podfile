@@ -19,5 +19,6 @@ target 'HrApp' do
    pod 'DropDown'
    pod 'SQLite.swift', '~> 0.11.5'
    pod 'FSCalendar'
+
   
 end

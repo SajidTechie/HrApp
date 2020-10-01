@@ -8,6 +8,7 @@
 
 import Foundation
 struct LeaveTypeElement : Codable {
+    
     let version : String?
     let statusCode : Int?
     let statusCodeMessage : String?

@@ -43,17 +43,23 @@ struct UpcomingAnniversaryElement : Codable {
 struct UpcomingAnniversaryData : Codable {
     let employeeName : String?
     let anniversarydate : String?
+    let profilePicture : String?
+    let message : String?
 
     enum CodingKeys: String, CodingKey {
 
         case employeeName = "EmployeeName"
         case anniversarydate = "Anniversarydate"
+        case profilePicture = "ProfilePicture"
+        case message = "Message"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         employeeName = try values.decodeIfPresent(String.self, forKey: .employeeName)
         anniversarydate = try values.decodeIfPresent(String.self, forKey: .anniversarydate)
+        profilePicture = try values.decodeIfPresent(String.self, forKey: .message)
+        message = try values.decodeIfPresent(String.self, forKey: .message)
     }
 
 }

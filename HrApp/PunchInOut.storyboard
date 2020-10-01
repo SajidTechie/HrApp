@@ -4,9 +4,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="roboto.regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="dTc-Sy-HIm">
@@ -24,7 +30,7 @@
             </objects>
             <point key="canvasLocation" x="-513" y="141"/>
         </scene>
-        <!--Map Punch In Out Controller-->
+        <!--Punch Attendance-->
         <scene sceneID="bt5-YD-Qw2">
             <objects>
                 <viewController storyboardIdentifier="MapPunchInOutController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xTi-YG-aGU" customClass="MapPunchInOutController" customModule="HrApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -33,69 +39,54 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="EjW-sV-Hme">
-                                <rect key="frame" x="0.0" y="88" width="414" height="694"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cPh-Pk-R6U">
-                                <rect key="frame" x="0.0" y="782" width="414" height="80"/>
+                                <rect key="frame" x="0.0" y="762" width="414" height="100"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="fpE-93-dxV">
-                                        <rect key="frame" x="58" y="26" width="300" height="30"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5J-l2-0K2" userLabel="btnCheckIn">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="d6j-G8-Hix"/>
-                                                    <constraint firstAttribute="width" constant="100" id="hSZ-kh-VZw"/>
-                                                </constraints>
-                                                <state key="normal" title="Check In">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onPunchInClicked:" destination="xTi-YG-aGU" eventType="touchUpInside" id="Jc4-fz-MuL"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebb-bs-z7O" userLabel="btnCheckOut">
-                                                <rect key="frame" x="200" y="0.0" width="100" height="30"/>
-                                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="30" id="Gez-2Z-O6f"/>
-                                                    <constraint firstAttribute="width" constant="100" id="hKi-sq-e0D"/>
-                                                </constraints>
-                                                <state key="normal" title="Check Out">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onPunchOutClicked:" destination="xTi-YG-aGU" eventType="touchUpInside" id="eMW-tE-Lml"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q5J-l2-0K2" userLabel="btnCheckIn" customClass="GradientButton" customModule="HrApp" customModuleProvider="target">
+                                        <rect key="frame" x="158" y="36" width="100" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="9RA-XM-itZ"/>
+                                            <constraint firstAttribute="width" constant="100" id="etQ-qe-HDw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                        <state key="normal" title="Check In">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onPunchInClicked:" destination="xTi-YG-aGU" eventType="touchUpInside" id="Jc4-fz-MuL"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="fpE-93-dxV" firstAttribute="centerX" secondItem="cPh-Pk-R6U" secondAttribute="centerX" constant="1" id="9KB-81-nDP"/>
-                                    <constraint firstItem="fpE-93-dxV" firstAttribute="centerY" secondItem="cPh-Pk-R6U" secondAttribute="centerY" constant="1" id="XjK-8T-qln"/>
+                                    <constraint firstItem="Q5J-l2-0K2" firstAttribute="centerY" secondItem="cPh-Pk-R6U" secondAttribute="centerY" constant="1" id="RCK-5a-MQ7"/>
+                                    <constraint firstItem="Q5J-l2-0K2" firstAttribute="centerX" secondItem="cPh-Pk-R6U" secondAttribute="centerX" constant="1" id="eRe-0O-tnu"/>
+                                    <constraint firstAttribute="height" constant="100" id="ery-z4-ATJ"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="IYS-YE-0J3" firstAttribute="trailing" secondItem="cPh-Pk-R6U" secondAttribute="trailing" id="AsT-AI-Ie4"/>
-                            <constraint firstItem="IYS-YE-0J3" firstAttribute="bottom" secondItem="cPh-Pk-R6U" secondAttribute="bottom" id="GlZ-qT-L0z"/>
+                            <constraint firstItem="cPh-Pk-R6U" firstAttribute="bottom" secondItem="IYS-YE-0J3" secondAttribute="bottom" id="DfR-Ba-FY5"/>
                             <constraint firstItem="EjW-sV-Hme" firstAttribute="top" secondItem="IYS-YE-0J3" secondAttribute="top" id="JcT-NS-LKL"/>
-                            <constraint firstItem="IYS-YE-0J3" firstAttribute="bottom" secondItem="EjW-sV-Hme" secondAttribute="bottom" constant="80" id="Z8Q-mN-yNH"/>
-                            <constraint firstItem="cPh-Pk-R6U" firstAttribute="leading" secondItem="IYS-YE-0J3" secondAttribute="leading" id="iYQ-Jb-kyo"/>
-                            <constraint firstItem="cPh-Pk-R6U" firstAttribute="top" secondItem="EjW-sV-Hme" secondAttribute="bottom" id="krj-ZR-dwg"/>
+                            <constraint firstItem="IYS-YE-0J3" firstAttribute="bottom" secondItem="EjW-sV-Hme" secondAttribute="bottom" id="Z8Q-mN-yNH"/>
+                            <constraint firstItem="cPh-Pk-R6U" firstAttribute="leading" secondItem="sca-gw-W5C" secondAttribute="leading" id="ZBi-86-3Td"/>
+                            <constraint firstAttribute="trailing" secondItem="cPh-Pk-R6U" secondAttribute="trailing" id="eRG-Wx-BRG"/>
                             <constraint firstItem="EjW-sV-Hme" firstAttribute="leading" secondItem="IYS-YE-0J3" secondAttribute="leading" id="lCb-z3-OkG"/>
                             <constraint firstItem="IYS-YE-0J3" firstAttribute="trailing" secondItem="EjW-sV-Hme" secondAttribute="trailing" id="rFo-Oe-cgK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="IYS-YE-0J3"/>
                     </view>
-                    <navigationItem key="navigationItem" id="e9g-89-hbU"/>
+                    <navigationItem key="navigationItem" title="Punch Attendance" id="bpg-fi-cOa">
+                        <barButtonItem key="leftBarButtonItem" image="hamburger-menu-icon" id="0it-Ft-uV9" userLabel="Menu CallServiceExec">
+                            <color key="tintColor" name="FontDarkText"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="btnPunchIn" destination="Q5J-l2-0K2" id="LNP-me-5So"/>
-                        <outlet property="btnPunchOut" destination="Ebb-bs-z7O" id="DUS-NH-KL4"/>
                         <outlet property="mapView" destination="EjW-sV-Hme" id="0Z9-S4-UPd"/>
                     </connections>
                 </viewController>
@@ -104,4 +95,10 @@
             <point key="canvasLocation" x="386.95652173913044" y="142.63392857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="hamburger-menu-icon" width="16" height="16"/>
+        <namedColor name="FontDarkText">
+            <color red="0.31372549019607843" green="0.31372549019607843" blue="0.31372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

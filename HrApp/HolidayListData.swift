@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 struct HolidayListElement : Codable {
     let version : String?
     let statusCode : Int?
@@ -17,6 +18,7 @@ struct HolidayListElement : Codable {
     let errors : [ErrorsData]?
 
     enum CodingKeys: String, CodingKey {
+
         case version = "Version"
         case statusCode = "StatusCode"
         case statusCodeMessage = "StatusCodeMessage"
@@ -39,23 +41,41 @@ struct HolidayListElement : Codable {
 
 }
 
+
 struct HolidayListData : Codable {
     let holidayFromDate : String?
     let holidayToDate : String?
     let holidayName : String?
+     let fromDateDay : String?
+   
+     let toDateDay : String?
+     let fromDateFormat : String?
+     let toDateFormat : String?
+     let description : String?
 
     enum CodingKeys: String, CodingKey {
 
         case holidayFromDate = "HolidayFromDate"
         case holidayToDate = "HolidayToDate"
         case holidayName = "HolidayName"
+        case fromDateDay = "FromDateDay"
+        case toDateDay = "ToDateDay"
+        case fromDateFormat = "FromDateFormat"
+        case toDateFormat = "ToDateFormat"
+        case description = "Description"
+       
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-          holidayFromDate = try values.decodeIfPresent(String.self, forKey: .holidayFromDate)
-          holidayToDate = try values.decodeIfPresent(String.self, forKey: .holidayToDate)
-          holidayName = try values.decodeIfPresent(String.self, forKey: .holidayName)
+        holidayFromDate = try values.decodeIfPresent(String.self, forKey: .holidayFromDate)
+        holidayToDate = try values.decodeIfPresent(String.self, forKey: .holidayToDate)
+        holidayName = try values.decodeIfPresent(String.self, forKey: .holidayName)
+        fromDateDay = try values.decodeIfPresent(String.self, forKey: .fromDateDay)
+        toDateDay = try values.decodeIfPresent(String.self, forKey: .toDateDay)
+        fromDateFormat = try values.decodeIfPresent(String.self, forKey: .fromDateFormat)
+        toDateFormat = try values.decodeIfPresent(String.self, forKey: .toDateFormat)
+        description = try values.decodeIfPresent(String.self, forKey: .description)
+       
     }
-
 }

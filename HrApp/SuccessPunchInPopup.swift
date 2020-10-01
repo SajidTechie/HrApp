@@ -8,29 +8,35 @@
 
 import UIKit
 
-class SuccessPunchInPopup: UIViewController {
+class SuccessPunchInPopup: BaseViewController {
 
-    
+    @IBOutlet weak var lblPunchTime : UILabel!
     @IBOutlet weak var btnOk : RoundButton!
+    var strPunchTime = String()
+    var punchType = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-         btnOk.GradientButton()
         
-//        btnOk.applyButtonGradient(colors: [GradientView.UIColorFromRGB(0x586aa9).cgColor,GradientView.UIColorFromRGB(0x357b96).cgColor,GradientView.UIColorFromRGB(0x008f7e).cgColor])
+        let punchTimeArr = strPunchTime.components(separatedBy: " ")
+        
+        if(punchTimeArr.count > 0){
+            strPunchTime = punchTimeArr[1] + punchTimeArr[2]
+        }
+      
+        let firstAttributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Medium", size: 16)]
+        let secondAttributes = [NSAttributedString.Key.font: UIFont(name: "Roboto-Bold", size: 30)]
+
+        let firstString = NSMutableAttributedString(string: punchType, attributes: firstAttributes)
+        let secondString = NSAttributedString(string: strPunchTime, attributes: secondAttributes)
+
+        firstString.append(secondString)
+        
+        lblPunchTime.attributedText = firstString
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func clicked_submit(_ sender: UIButton) {
+     dismiss(animated: true, completion: nil)
     }
-    */
-
+  
 }

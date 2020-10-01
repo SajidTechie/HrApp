@@ -38,13 +38,20 @@ class ResetPasswordController: UIViewController {
             alert.show()
         }
         else{
-            self.apiCheckPassword()
+            
+            if (Utility.isConnectedToNetwork()) {
+                self.apiCheckPassword()
+            }
+            else{
+                var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+            
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         
@@ -56,13 +63,24 @@ class ResetPasswordController: UIViewController {
         
     }
     
+    @IBAction func clicked_BackButton(_ sender: UIBarButtonItem) {
+        if(callFrom == "SetPassword"){
+         let vcLogin = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+               self.navigationController?.pushViewController(vcLogin, animated: true)
+        }else{
+              self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func clicked_back(_ sender: Any) {
         if(callFrom == "SetPassword"){
-            let vcLogin = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! LoginController
-            self.navigationController?.pushViewController(vcLogin, animated: true)
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
+            let vcLogin = storyBoard.instantiateViewController(withIdentifier: "LoginController") as! LoginController
+            self.navigationController!.pushViewController(vcLogin, animated: false)
         }else{
-            let vcHome = self.storyboard?.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
-            self.navigationController!.pushViewController(vcHome, animated: false)
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+            let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
+            self.navigationController!.pushViewController(vcHome, animated: true)
         }
         self.dismiss(animated: true, completion: nil)
         
@@ -74,8 +92,8 @@ class ResetPasswordController: UIViewController {
         let json: [String: Any] =  [
             "UserID": (edtNewPassword.text ?? "")!,
             "NewPassword": Utility.getDeviceId(),
-            "ClientID": "string",
-            "ClientSecret": "string",
+            "ClientID": AppConstants.CLIENT_ID,
+            "ClientSecret": AppConstants.CLIENT_SECRET,
             "OldPassword": (edtOldPassword.text ?? "")!,
         ]
         
@@ -94,9 +112,9 @@ class ResetPasswordController: UIViewController {
                 
                 self.errorData = self.resetPasswordElement?.errors
                 
-               var errMsg = ""
+                var errMsg = ""
                 if(!(self.errorData?.isEmpty ?? true)){
-                errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
+                    errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
                 }
                 
                 if (statusCode == 200)

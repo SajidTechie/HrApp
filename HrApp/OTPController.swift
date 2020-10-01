@@ -98,6 +98,14 @@ class OtpController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     // - - - - - - - - - - - - - get otp api - - - - - - - - - - - -
     func apiGetOtp(){
         ViewControllerUtils.sharedInstance.showLoader()
@@ -105,8 +113,8 @@ class OtpController: UIViewController {
         let json: [String: Any] =  [
             "MobileNo": strMobileNumber,
             "deviceid": Utility.getDeviceId(),
-            "ClientID": "string",
-            "ClientSecret": "string"
+            "ClientID": AppConstants.CLIENT_ID,
+            "ClientSecret": AppConstants.CLIENT_SECRET
         ]
         
         
@@ -127,9 +135,9 @@ class OtpController: UIViewController {
                 
                 self.errorData = self.getOtpElement?.errors
                 
-               var errMsg = ""
+                var errMsg = ""
                 if(!(self.errorData?.isEmpty ?? true)){
-                errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
+                    errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
                 }
                 
                 if (statusCode == 200)
@@ -227,7 +235,14 @@ class OtpController: UIViewController {
             alert.show()
         }
         else{
-            self.apiValidateOtp()
+            if (Utility.isConnectedToNetwork()) {
+                self.apiValidateOtp()
+            }
+            else{
+                var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
+            
         }
         
     }
@@ -236,56 +251,58 @@ class OtpController: UIViewController {
     func apiValidateOtp(){
         
         ViewControllerUtils.sharedInstance.showLoader()
-               
-               let json: [String: Any] =  [
-                   "MobileNo": strMobileNumber,
-                   "Otp": (edtOtp.text ?? "")!,
-                   "RequestNo": (edtReqNo.text ?? "")!,
-                   "deviceid": Utility.getDeviceId(),
-                   "ClientID": "string",
-                   "ClientSecret": "string"
-               ]
-               
-               let manager =  DataManager.shared
-               
-               manager.makeAPICall(url: verifyApi, params: json, method: .POST, success: { (response) in
-                   let data = response as? Data
-                   print("verifyOtpApi - - - - - ",self.verifyApi,"-----",json)
-                   
-                   do {
-                       
-                       self.verifyOtpElement = try JSONDecoder().decode(VerifyOtpElement.self, from: data!)
-                       self.verifyOtpData = self.verifyOtpElement.data
-                       
-                       let statusCode = self.verifyOtpElement?.statusCode
-                       
-                       self.errorData = self.verifyOtpElement?.errors
-                       
-                       var errMsg = ""
-                       if(!(self.errorData?.isEmpty ?? true)){
-                       errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
-                       }
-                       
-                       if (statusCode == 200)
-                       {
-                           let storyBoard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
-                           let vcSetPassword = storyBoard.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
-                           self.navigationController!.pushViewController(vcSetPassword, animated: true)
-                       }else{
-                           var alert = UIAlertView(title: "Error", message: errMsg, delegate: nil, cancelButtonTitle: "OK")
-                           alert.show()
-                       }
-                       ViewControllerUtils.sharedInstance.removeLoader()
-                   } catch let errorData {
-                       
-                       print(errorData.localizedDescription)
-                       ViewControllerUtils.sharedInstance.removeLoader()
-                   }
-               }) { (Error) in
-                   ViewControllerUtils.sharedInstance.removeLoader()
-                   print(Error?.localizedDescription)
-                   
-               }
+        
+        let json: [String: Any] =  [
+            "MobileNo": strMobileNumber,
+            "Otp": (edtOtp.text ?? "")!,
+            "RequestNo": (edtReqNo.text ?? "")!,
+            "deviceid": Utility.getDeviceId(),
+            "ClientID": AppConstants.CLIENT_ID,
+            "ClientSecret": AppConstants.CLIENT_SECRET
+        ]
+        
+        let manager =  DataManager.shared
+        
+        manager.makeAPICall(url: verifyApi, params: json, method: .POST, success: { (response) in
+            let data = response as? Data
+            print("verifyOtpApi - - - - - ",self.verifyApi,"-----",json)
+            
+            do {
+                
+                self.verifyOtpElement = try JSONDecoder().decode(VerifyOtpElement.self, from: data!)
+                self.verifyOtpData = self.verifyOtpElement.data
+                
+                let statusCode = self.verifyOtpElement?.statusCode
+                
+                self.errorData = self.verifyOtpElement?.errors
+                
+                var errMsg = ""
+                if(!(self.errorData?.isEmpty ?? true)){
+                    errMsg = self.errorData?[0].errorMsg ?? "No Data Available"
+                }
+                
+                if (statusCode == 200)
+                {
+                    let storyBoard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
+                    let vcSetPassword = storyBoard.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
+                    vcSetPassword.callFrom = "SetPassword"
+                    
+                    self.navigationController?.pushViewController(vcSetPassword, animated: true)
+                }else{
+                    var alert = UIAlertView(title: "Error", message: errMsg, delegate: nil, cancelButtonTitle: "OK")
+                    alert.show()
+                }
+                ViewControllerUtils.sharedInstance.removeLoader()
+            } catch let errorData {
+                
+                print(errorData.localizedDescription)
+                ViewControllerUtils.sharedInstance.removeLoader()
+            }
+        }) { (Error) in
+            ViewControllerUtils.sharedInstance.removeLoader()
+            print(Error?.localizedDescription)
+            
+        }
     }
     
     

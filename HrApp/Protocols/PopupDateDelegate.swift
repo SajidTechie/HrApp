@@ -11,14 +11,8 @@ import Foundation
     @objc optional func updateDate(value: String, date: Date)
     @objc optional func updateValue(value: String,from: String)
     @objc optional func updatePositionValue(value: String,position: Int,from: String)
- //   @objc optional func updateEnquiry(value: String,slNo: String)
-   // @objc optional func updateBankList(value: String,utrn: String,amount: String)
     @objc optional func showValue(value: String)
-   // @objc optional func showCartValue(value: String)
     @objc optional func showBtnColor(value: Bool)
-    
-    //@objc optional func showSemiFinal(value: Bool)
-   // @objc optional func showFinal(value: Bool)
-    
+    @objc optional func showParty(value: String,userId: String)
     @objc optional func refreshApi()
 }

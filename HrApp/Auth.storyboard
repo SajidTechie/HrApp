@@ -42,7 +42,7 @@
                                                 </constraints>
                                                 <color key="textColor" name="FontDarkText"/>
                                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="20"/>
@@ -115,7 +115,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NWg-3D-fDQ">
-                                                <rect key="frame" x="258" y="350" width="97" height="20"/>
+                                                <rect key="frame" x="256" y="350" width="99" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="c0Q-gZ-Auf"/>
                                                 </constraints>
@@ -263,7 +263,7 @@
                                         </constraints>
                                         <color key="textColor" name="FontDarkText"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
+                                        <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="20"/>
@@ -364,25 +364,25 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait while we verify your number" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="if6-8u-ZSb">
-                                        <rect key="frame" x="20" y="43.5" width="335" height="14.5"/>
+                                        <rect key="frame" x="20" y="43.5" width="335" height="14"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                         <color key="textColor" name="FontDarkText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="abcd@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VaZ-gS-4UQ">
-                                        <rect key="frame" x="20" y="78" width="335" height="15.5"/>
+                                        <rect key="frame" x="20" y="77.5" width="335" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" name="FontLightText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="63456237562" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1J-3e-Mxc">
-                                        <rect key="frame" x="20" y="98.5" width="335" height="15.5"/>
+                                        <rect key="frame" x="20" y="98" width="335" height="15.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                         <color key="textColor" name="FontLightText"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="REQ NO" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="4cS-UI-JmP" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="134" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="133.5" width="335" height="40"/>
                                         <color key="tintColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="yxz-c0-xVU"/>
@@ -403,7 +403,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="ENTER OTP" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="SHQ-or-bcy" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="194" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="193.5" width="335" height="40"/>
                                         <color key="tintColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="OGb-1D-Oy1"/>
@@ -424,7 +424,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change CIN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qnc-Mt-6Wt">
-                                        <rect key="frame" x="20" y="244" width="63.5" height="14"/>
+                                        <rect key="frame" x="20" y="243.5" width="66" height="14"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="12"/>
                                         <color key="textColor" name="FontDarkText"/>
                                         <nil key="highlightedColor"/>
@@ -436,7 +436,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2i-Hl-UPH" customClass="RoundButton" customModule="HrApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="278" width="335" height="40"/>
+                                        <rect key="frame" x="20" y="277.5" width="335" height="40"/>
                                         <color key="backgroundColor" name="LoginButton"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="yol-dl-u18"/>
@@ -515,166 +515,6 @@
             </objects>
             <point key="canvasLocation" x="3050" y="-621"/>
         </scene>
-        <!--SetPassword-->
-        <scene sceneID="ZLv-JX-WfY">
-            <objects>
-                <viewController storyboardIdentifier="ResetPasswordController" title="SetPassword" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0oU-TL-cqZ" customClass="ResetPasswordController" customModule="HrApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="U17-RC-w3E">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_background" translatesAutoresizingMaskIntoConstraints="NO" id="8tc-cd-gTC">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ILU-5N-2N4">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KJM-op-rRg">
-                                        <rect key="frame" x="20" y="60" width="335" height="220"/>
-                                        <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Old Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="8mP-T1-9WU" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
-                                                <color key="tintColor" name="LoginButton"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="7mx-Mx-a36"/>
-                                                </constraints>
-                                                <color key="textColor" name="FontDarkText"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" name="DashboardHeader"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="New Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="CgJ-aP-JlW" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="60" width="335" height="40"/>
-                                                <color key="tintColor" name="LoginButton"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="KGf-77-9BM"/>
-                                                </constraints>
-                                                <color key="textColor" name="FontDarkText"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" name="DashboardHeader"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Confirm Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="nz0-nu-e0J" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="120" width="335" height="40"/>
-                                                <color key="tintColor" name="LoginButton"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="lX3-7y-fF9"/>
-                                                </constraints>
-                                                <color key="textColor" name="FontDarkText"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" name="DashboardHeader"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUZ-DN-Q6r" customClass="RoundButton" customModule="HrApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="180" width="335" height="40"/>
-                                                <color key="backgroundColor" name="LoginButton"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="fJz-9s-j27"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
-                                                <state key="normal" title="CONFIRM">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="20"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.0"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="clicked_setpassword:" destination="0oU-TL-cqZ" eventType="touchUpInside" id="Rau-Ra-ecY"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="CgJ-aP-JlW" firstAttribute="top" secondItem="8mP-T1-9WU" secondAttribute="bottom" constant="20" id="4V8-Ew-3Wo"/>
-                                            <constraint firstAttribute="trailing" secondItem="dUZ-DN-Q6r" secondAttribute="trailing" id="4mY-Mg-wfO"/>
-                                            <constraint firstItem="dUZ-DN-Q6r" firstAttribute="leading" secondItem="KJM-op-rRg" secondAttribute="leading" id="BFP-9o-0v8"/>
-                                            <constraint firstItem="8mP-T1-9WU" firstAttribute="top" secondItem="KJM-op-rRg" secondAttribute="top" id="DAm-7g-b5H"/>
-                                            <constraint firstItem="nz0-nu-e0J" firstAttribute="leading" secondItem="KJM-op-rRg" secondAttribute="leading" id="Eob-au-doV"/>
-                                            <constraint firstItem="CgJ-aP-JlW" firstAttribute="leading" secondItem="KJM-op-rRg" secondAttribute="leading" id="G68-Z7-Vst"/>
-                                            <constraint firstAttribute="trailing" secondItem="nz0-nu-e0J" secondAttribute="trailing" id="Sgc-Gr-UvD"/>
-                                            <constraint firstAttribute="trailing" secondItem="CgJ-aP-JlW" secondAttribute="trailing" id="TlV-yr-OwA"/>
-                                            <constraint firstAttribute="trailing" secondItem="8mP-T1-9WU" secondAttribute="trailing" id="V5i-1b-iSQ"/>
-                                            <constraint firstItem="8mP-T1-9WU" firstAttribute="leading" secondItem="KJM-op-rRg" secondAttribute="leading" id="ZlG-ip-dIb"/>
-                                            <constraint firstAttribute="bottom" secondItem="dUZ-DN-Q6r" secondAttribute="bottom" id="hZu-TM-EOe"/>
-                                            <constraint firstItem="nz0-nu-e0J" firstAttribute="top" secondItem="CgJ-aP-JlW" secondAttribute="bottom" constant="20" id="yZ4-th-yAR"/>
-                                            <constraint firstItem="dUZ-DN-Q6r" firstAttribute="top" secondItem="nz0-nu-e0J" secondAttribute="bottom" constant="20" id="yvD-8f-O8z"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="KJM-op-rRg" secondAttribute="trailing" constant="20" id="F6w-KH-gcC"/>
-                                    <constraint firstItem="KJM-op-rRg" firstAttribute="top" secondItem="ILU-5N-2N4" secondAttribute="top" constant="60" id="KMu-ac-jf7"/>
-                                    <constraint firstItem="KJM-op-rRg" firstAttribute="leading" secondItem="ILU-5N-2N4" secondAttribute="leading" constant="20" id="Nsb-R7-SVo"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="EEm-Lb-0Mk" firstAttribute="bottom" secondItem="8tc-cd-gTC" secondAttribute="bottom" id="APi-rG-bCb"/>
-                            <constraint firstItem="EEm-Lb-0Mk" firstAttribute="bottom" secondItem="ILU-5N-2N4" secondAttribute="bottom" id="DF5-4d-6AS"/>
-                            <constraint firstItem="EEm-Lb-0Mk" firstAttribute="trailing" secondItem="ILU-5N-2N4" secondAttribute="trailing" id="HXr-UN-ztu"/>
-                            <constraint firstItem="ILU-5N-2N4" firstAttribute="top" secondItem="EEm-Lb-0Mk" secondAttribute="top" id="T1z-lh-iVX"/>
-                            <constraint firstItem="8tc-cd-gTC" firstAttribute="top" secondItem="EEm-Lb-0Mk" secondAttribute="top" id="UHH-kB-KJx"/>
-                            <constraint firstItem="ILU-5N-2N4" firstAttribute="leading" secondItem="EEm-Lb-0Mk" secondAttribute="leading" id="cfM-2y-j4S"/>
-                            <constraint firstItem="8tc-cd-gTC" firstAttribute="leading" secondItem="EEm-Lb-0Mk" secondAttribute="leading" id="fgl-ir-nkN"/>
-                            <constraint firstItem="8tc-cd-gTC" firstAttribute="trailing" secondItem="EEm-Lb-0Mk" secondAttribute="trailing" id="ikw-wk-hNE"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="EEm-Lb-0Mk"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Set Password" id="Tov-js-14z">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="back" id="gZM-nV-nKo" userLabel="Menu Outstanding">
-                            <color key="tintColor" name="FontDarkText"/>
-                            <connections>
-                                <action selector="clicked_back:" destination="0oU-TL-cqZ" id="FHg-xG-eg2"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="edtConfirmPassword" destination="nz0-nu-e0J" id="lcH-g7-CbQ"/>
-                        <outlet property="edtNewPassword" destination="CgJ-aP-JlW" id="ao2-oF-aKx"/>
-                        <outlet property="edtOldPassword" destination="8mP-T1-9WU" id="fjU-ex-QBS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IEu-UL-ebU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="631" y="-621"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="dHh-Kf-pGt">
             <objects>
@@ -694,28 +534,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hQT-rp-fgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1806" y="-621"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="AVE-9H-4ej">
-            <objects>
-                <navigationController id="W5x-bA-s0E" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oFh-cW-Amr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" name="Primary"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
-                            <color key="textColor" name="FontDarkText"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="0oU-TL-cqZ" kind="relationship" relationship="rootViewController" id="jdT-iL-5ZQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rUl-Z0-ckH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-420" y="-621"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a2M-yf-bCX">
@@ -739,6 +557,186 @@
             </objects>
             <point key="canvasLocation" x="-2252" y="-621"/>
         </scene>
+        <!--SetPassword-->
+        <scene sceneID="5Re-mc-eqt">
+            <objects>
+                <viewController storyboardIdentifier="ResetPasswordController" title="SetPassword" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YzU-0C-Kzy" customClass="ResetPasswordController" customModule="HrApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dzb-5k-Zyf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_background" translatesAutoresizingMaskIntoConstraints="NO" id="h05-9l-RGN">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E0h-ta-Crf">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5d-da-FUx">
+                                        <rect key="frame" x="20" y="60" width="335" height="220"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Old Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="gw4-hC-i2w" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
+                                                <color key="tintColor" name="LoginButton"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="MPf-cz-HRC"/>
+                                                </constraints>
+                                                <color key="textColor" name="FontDarkText"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="DashboardHeader"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="New Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="Z77-mC-Tgg" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="60" width="335" height="40"/>
+                                                <color key="tintColor" name="LoginButton"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Sf5-eu-lus"/>
+                                                </constraints>
+                                                <color key="textColor" name="FontDarkText"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="DashboardHeader"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Confirm Password" textAlignment="center" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="bkP-HN-Ibb" customClass="RoundEditText" customModule="HrApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="120" width="335" height="40"/>
+                                                <color key="tintColor" name="LoginButton"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="nq5-cA-Kwd"/>
+                                                </constraints>
+                                                <color key="textColor" name="FontDarkText"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" name="DashboardHeader"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aq0-Aq-feB" customClass="RoundButton" customModule="HrApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="180" width="335" height="40"/>
+                                                <color key="backgroundColor" name="LoginButton"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="PTK-8o-oP7"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                                                <state key="normal" title="CONFIRM">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="clicked_setpassword:" destination="YzU-0C-Kzy" eventType="touchUpInside" id="8CA-bt-Us3"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="gw4-hC-i2w" firstAttribute="top" secondItem="h5d-da-FUx" secondAttribute="top" id="77s-S0-yxV"/>
+                                            <constraint firstItem="bkP-HN-Ibb" firstAttribute="top" secondItem="Z77-mC-Tgg" secondAttribute="bottom" constant="20" id="A7n-CI-iIF"/>
+                                            <constraint firstItem="bkP-HN-Ibb" firstAttribute="leading" secondItem="h5d-da-FUx" secondAttribute="leading" id="BOF-FE-cH6"/>
+                                            <constraint firstItem="Z77-mC-Tgg" firstAttribute="leading" secondItem="h5d-da-FUx" secondAttribute="leading" id="Euf-Dd-YSM"/>
+                                            <constraint firstItem="Aq0-Aq-feB" firstAttribute="leading" secondItem="h5d-da-FUx" secondAttribute="leading" id="Kr6-zV-po3"/>
+                                            <constraint firstAttribute="bottom" secondItem="Aq0-Aq-feB" secondAttribute="bottom" id="Tdl-gw-R7c"/>
+                                            <constraint firstAttribute="trailing" secondItem="bkP-HN-Ibb" secondAttribute="trailing" id="byN-9j-jYx"/>
+                                            <constraint firstItem="gw4-hC-i2w" firstAttribute="leading" secondItem="h5d-da-FUx" secondAttribute="leading" id="hC1-ek-aoB"/>
+                                            <constraint firstItem="Aq0-Aq-feB" firstAttribute="top" secondItem="bkP-HN-Ibb" secondAttribute="bottom" constant="20" id="vBD-vG-hAb"/>
+                                            <constraint firstItem="Z77-mC-Tgg" firstAttribute="top" secondItem="gw4-hC-i2w" secondAttribute="bottom" constant="20" id="vyt-Gf-ZDJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="Aq0-Aq-feB" secondAttribute="trailing" id="yU1-Ff-atN"/>
+                                            <constraint firstAttribute="trailing" secondItem="gw4-hC-i2w" secondAttribute="trailing" id="yjJ-GJ-Zda"/>
+                                            <constraint firstAttribute="trailing" secondItem="Z77-mC-Tgg" secondAttribute="trailing" id="ynV-hv-GyT"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="h5d-da-FUx" firstAttribute="leading" secondItem="E0h-ta-Crf" secondAttribute="leading" constant="20" id="gaj-hc-eda"/>
+                                    <constraint firstItem="h5d-da-FUx" firstAttribute="top" secondItem="E0h-ta-Crf" secondAttribute="top" constant="60" id="p2V-dS-r0A"/>
+                                    <constraint firstAttribute="trailing" secondItem="h5d-da-FUx" secondAttribute="trailing" constant="20" id="tsA-C4-BjM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xd4-eP-MaV" firstAttribute="bottom" secondItem="E0h-ta-Crf" secondAttribute="bottom" id="6WM-k2-2ud"/>
+                            <constraint firstItem="Xd4-eP-MaV" firstAttribute="bottom" secondItem="h05-9l-RGN" secondAttribute="bottom" id="Clm-sx-8sl"/>
+                            <constraint firstItem="Xd4-eP-MaV" firstAttribute="trailing" secondItem="E0h-ta-Crf" secondAttribute="trailing" id="DSo-9z-dr0"/>
+                            <constraint firstItem="E0h-ta-Crf" firstAttribute="top" secondItem="Xd4-eP-MaV" secondAttribute="top" id="MUi-8L-jwY"/>
+                            <constraint firstItem="h05-9l-RGN" firstAttribute="leading" secondItem="Xd4-eP-MaV" secondAttribute="leading" id="dgh-We-9eJ"/>
+                            <constraint firstItem="h05-9l-RGN" firstAttribute="trailing" secondItem="Xd4-eP-MaV" secondAttribute="trailing" id="hqm-i8-0w7"/>
+                            <constraint firstItem="h05-9l-RGN" firstAttribute="top" secondItem="Xd4-eP-MaV" secondAttribute="top" id="u3a-z3-C3P"/>
+                            <constraint firstItem="E0h-ta-Crf" firstAttribute="leading" secondItem="Xd4-eP-MaV" secondAttribute="leading" id="ysf-pV-Mj1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xd4-eP-MaV"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Set Password" id="pCV-UT-uZ8">
+                        <barButtonItem key="backBarButtonItem" title=" " id="1Dj-g1-lWl"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" id="Klj-To-0cW" userLabel="Menu Back">
+                            <color key="tintColor" name="FontDarkText"/>
+                            <connections>
+                                <action selector="clicked_BackButton:" destination="YzU-0C-Kzy" id="Zjx-Tr-k2r"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="backButton" destination="Klj-To-0cW" id="dY0-gG-FVa"/>
+                        <outlet property="edtConfirmPassword" destination="bkP-HN-Ibb" id="BeE-b8-zrv"/>
+                        <outlet property="edtNewPassword" destination="Z77-mC-Tgg" id="0ud-Km-e2s"/>
+                        <outlet property="edtOldPassword" destination="gw4-hC-i2w" id="Bcv-XF-bgu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aYv-aK-jgZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="532" y="-621"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FFb-mF-jnj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tSU-A2-RkG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4LP-Mz-ENn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YzU-0C-Kzy" kind="relationship" relationship="rootViewController" id="XRv-d2-69f"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wTx-hS-bCz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-407" y="-621"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="30" height="30"/>
@@ -757,9 +755,6 @@
         </namedColor>
         <namedColor name="LoginButton">
             <color red="0.39899998903274536" green="0.40000000596046448" blue="0.39899998903274536" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Primary">
-            <color red="0.76700001955032349" green="0.77100002765655518" blue="0.77799999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="primaryDark">
             <color red="0.67699998617172241" green="0.6809999942779541" blue="0.68800002336502075" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

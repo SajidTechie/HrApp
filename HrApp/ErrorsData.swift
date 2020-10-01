@@ -14,7 +14,6 @@ struct ErrorsData : Codable {
     let helpUrl : String?
 
     enum CodingKeys: String, CodingKey {
-
         case errorCode = "ErrorCode"
         case errorMsg = "ErrorMsg"
         case parameter = "Parameter"

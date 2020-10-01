@@ -20,35 +20,111 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func slideMenuItemSelectedAtIndex(_ sectionIndex: Int,_ itemIndex: Int) {
+    func slideMenuItemSelectedAtIndex(_ sectionIndex: Int,_ itemIndex: Int,_ screen:String) {
         let topViewController : UIViewController = self.navigationController!.topViewController!
         print("View Controller is : \(topViewController) \n", terminator: "")
+        print("Clicked on - - - - ",screen)
+        
         switch(sectionIndex,itemIndex){
         case (-2,-2):
             print("MyProfile\n", terminator: "")
             
-          //  self.openViewControllerBasedOnIdentifier("MyProfile")
+            //  self.openViewControllerBasedOnIdentifier("MyProfile")
             
             break
         case (0,-1):
             print("Dashboard\n", terminator: "")
-
-         //   self.openViewControllerBasedOnIdentifier("Dashboard")
+            
+            self.openViewControllerBasedOnIdentifier("DashboardController","Home")
             
             break
-      
+            
+        case (1,-1):
+            print("check in/out\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("MapPunchInOutController","PunchInOut")
+            
+            break
+            
+        case (2,-1):
+            print("leave history\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("LeaveRecordController","Leaves")
+            
+            break
+            
+        case (3,-1):
+            print("attendance stats\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("StatisticViewController","Leaves")
+            
+            break
+            
+        case (4,-1):
+            print("holiday list\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("AnnualHolidaysController","LeftPanel")
+            
+            break
+            
+        case (5,-1):
+            print("leave approval\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("ApprovalsController","LeftPanel")
+            
+            break
+            
+        case (6,-1):
+            print("manager account\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("IncreasedLimitController","Manager")
+            
+            break
+            
+        case (7,-1):
+            print("notification\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("HomeController","LeftPanel")
+            
+            break
+            
+            
+        case (8,-1):
+            print("about us\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("HomeController","LeftPanel")
+            
+            break
+            
+        case (9,-1):
+            print("contact us\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("HomeController","LeftPanel")
+            
+            break
+            
+        case (10,-1):
+            print("logout\n", terminator: "")
+            
+            
+            break
+            
         default:
             print("default\n", terminator: "")
         }
     }
     
-    func openViewControllerBasedOnIdentifier(_ strIdentifier:String){
-        let destViewController : UIViewController = self.storyboard!.instantiateViewController(withIdentifier: strIdentifier)
+    func openViewControllerBasedOnIdentifier(_ strIdentifier:String,_ storyboard:String){
+        let storyBoard: UIStoryboard = UIStoryboard(name: storyboard, bundle: nil)
+        let destViewController : UIViewController = storyBoard.instantiateViewController(withIdentifier: strIdentifier)
         
         let topViewController : UIViewController = self.navigationController!.topViewController!
         
         if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
-            print("Same VC")
+            print("Same VC",topViewController.restorationIdentifier)
+//            if(topViewController.restorationIdentifier?.elementsEqual("HomeController") ??
+//                false)
+//           { DashboardController().createTabBarController()}
         } else {
             self.navigationController!.pushViewController(destViewController, animated: true)
         }
@@ -62,8 +138,8 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         let customBarItem = UIBarButtonItem(customView: btnShowMenu)
         self.navigationItem.leftBarButtonItem = customBarItem;
     }
- 
-
+    
+    
     func defaultMenuImage() -> UIImage {
         var defaultMenuImage = UIImage()
         
@@ -82,16 +158,16 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         defaultMenuImage = UIGraphicsGetImageFromCurrentImageContext()!
         
         UIGraphicsEndImageContext()
-       
+        
         return defaultMenuImage;
     }
- 
+    
     
     @objc func onSlideMenuButtonPressed(_ sender : UIButton){
         if (sender.tag == 10)
         {
             // To Hide Menu If it already there
-            self.slideMenuItemSelectedAtIndex(-1,-1);
+            self.slideMenuItemSelectedAtIndex(-1,-1,"");
             
             sender.tag = 0;
             
@@ -103,8 +179,8 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
                 viewMenuBack.frame = frameMenu
                 viewMenuBack.layoutIfNeeded()
                 viewMenuBack.backgroundColor = UIColor.clear
-                }, completion: { (finished) -> Void in
-                    viewMenuBack.removeFromSuperview()
+            }, completion: { (finished) -> Void in
+                viewMenuBack.removeFromSuperview()
             })
             
             return
@@ -113,7 +189,8 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         sender.isEnabled = false
         sender.tag = 10
         
-        let menuVC : MenuViewController = self.storyboard!.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+        let menuVC : MenuViewController = storyBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
         menuVC.btnMenu = sender
         menuVC.delegate = self
         self.view.addSubview(menuVC.view)
@@ -126,6 +203,6 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
             menuVC.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
             sender.isEnabled = true
-            }, completion:nil)
+        }, completion:nil)
     }
 }

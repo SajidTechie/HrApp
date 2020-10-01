@@ -9,57 +9,53 @@
 import UIKit
 
 class ProfileController: UIViewController {
-
+    
     @IBOutlet weak var profileCard : UIView!
+    @IBOutlet weak var profileImage : UIImageView!
+    @IBOutlet weak var employeeCodeLbl: UILabel!
+    @IBOutlet weak var officeEmailLbl: UILabel!
+    @IBOutlet weak var joiningDateLbl: UILabel!
+    @IBOutlet weak var DOBLbl: UILabel!
+    @IBOutlet weak var reportingPersonLbl: UILabel!
+    @IBOutlet weak var branchLbl: UILabel!
+    @IBOutlet weak var officeAddressLbl: UILabel!
+    @IBOutlet weak var homeAddressLbl: UILabel!
+    @IBOutlet weak var versionLbl: UILabel!
+    
+    @IBOutlet weak var employeeNameLbl: UILabel!
+    @IBOutlet weak var employeeDesignationLbl: UILabel!
+    
+    @IBAction func changePasswordClicked(_ sender: Any) {
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Auth", bundle: nil)
+        let vcChangePassword = storyBoard.instantiateViewController(withIdentifier: "ResetPasswordController") as! ResetPasswordController
+        vcChangePassword.callFrom = "ChangePassword"
+        
+        let navController = UINavigationController(rootViewController: vcChangePassword)
+        self.navigationController?.present(navController, animated: true, completion: nil)
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-//        profileCard.applyGradient(colors: [Helper.UIColorFromRGB(0x2B95CE).cgColor,Helper.UIColorFromRGB(0x2ECAD5).cgColor])
         
-//        profileCard.applyGradient(colors: [GradientView.UIColorFromRGB(0x367EB9).cgColor,GradientView.UIColorFromRGB(0x6E6FC7).cgColor,GradientView.UIColorFromRGB(0xDC45E4).cgColor])
-    
-//        let sb = UIStoryboard(name: "PunchInPopup", bundle: nil)
-//
-//        let popup = sb.instantiateInitialViewController()  as? PunchInController
-//
-//
-//
-//     self.present(popup!, animated: true)
+        let loginData =  UserDefaults.standard.value(forKey: "loginData") as? Dictionary ?? [:]
         
+        employeeNameLbl.text = loginData["EmployeeFullName"] as? String ?? "-"
+        employeeDesignationLbl.text = "\(loginData["Department"] as? String ?? "-") - \(loginData["Designation"] as? String ?? "-")"
         
-//        let storyboard = UIStoryboard(name: "LeftPanel", bundle: nil)
-//        let controller = storyboard.instantiateViewController(withIdentifier: "ApprovalsController")
-//        self.present(controller, animated: true, completion: nil)
-//
+        profileImage.sd_setImage(with: URL(string: loginData["ProfilePicture"] as? String ?? ""), placeholderImage: UIImage(named: "profile.png"))
         
+        employeeCodeLbl.text = loginData["EmployeeCode"] as? String ?? "-"
+        officeEmailLbl.text = loginData["Officialemail"] as? String ?? "-"
+        joiningDateLbl.text = loginData["joiningDate"] as? String ?? "-"
+        DOBLbl.text = loginData["DateOfBirth"] as? String ?? "-"
+        reportingPersonLbl.text = loginData["ReportingPerson"] as? String ?? "-"
+        branchLbl.text = loginData["BranchName"] as? String ?? "-"
+        officeAddressLbl.text = loginData["OfficeAddress"] as? String ?? "-"
+        homeAddressLbl.text = loginData["HomeAddress"] as? String ?? "-"
         
-        
-        
-//        let sb = UIStoryboard(name: "SuccessMessagePopup", bundle: nil)
-//
-//           let popup = sb.instantiateInitialViewController()  as? SuccessMessageController
-//
-//
-//
-//       self.present(popup!, animated: true)
-        // Do any additional setup after loading the view.
+        versionLbl.text = AppConstants.APP_VERSION
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-    
-    
-    
-    
     
 }

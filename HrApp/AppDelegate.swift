@@ -15,6 +15,7 @@ import Fabric
 import UserNotifications
 import FirebaseInstanceID
 import FirebaseMessaging
+import DropDown
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -29,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         // Override point for customization after application launch.
       
         IQKeyboardManager.shared.enable = true
+        
+        DropDown.startListeningToKeyboard()
         
         var navigationBarAppearance = UINavigationBar.appearance()
         navigationBarAppearance.tintColor = UIColor.darkGray
@@ -123,9 +126,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
 //            print("ANALYTICS CLEARED - - - - - -",analyticsMain.count)
 //        }
         
+             UIApplication.shared.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalNever)
         
-          
-        return true
+               return true
+    }
+    
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if (Utility.isConnectedToNetwork()) {
+            var alert = UIAlertView(title: "Internet Connection", message: "Available", delegate: nil, cancelButtonTitle: "OK")
+                       alert.show()
+        }else{
+            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+                       alert.show()
+        }
     }
     
   
@@ -243,7 +257,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-     //   PersistenceService.saveContext()
+        PersistenceService.saveContext()
     }
 
     // MARK: - Core Data stack

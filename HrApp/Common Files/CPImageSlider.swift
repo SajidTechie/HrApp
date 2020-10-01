@@ -190,7 +190,7 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
         }else if(isBirthday == 1){
             mainStr = "\n is celebrating his/her anniversary on "
         }else{
-          mainStr = "\n"
+            mainStr = "\n"
         }
         
         for sub in myScrollView.subviews
@@ -232,7 +232,7 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
             labelV.textAlignment = .center
             labelV.numberOfLines = 0
             labelV.frame = CGRect(x: 100, y: -20, width: frame.width - 150, height: frame.height)
-          
+            
             
             if(showOnlyImages){
                 imageV.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
@@ -251,7 +251,9 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                         labelV.text = "No Data Available"
                     } else{
                         imageV.image = UIImage(named:images.last!)
-                        labelV.attributedText = getStringSpan(str1: labelStr.last!, str2: (mainStr + labelDate.last!))
+                        if(!showOnlyImages){
+                            labelV.attributedText = getStringSpan(str1: labelStr.last!, str2: (mainStr + labelDate.last!))
+                        }
                     }
                     
                     //imageV.image = UIImage(named:images.last!)
@@ -263,7 +265,9 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                         labelV.text = "No Data Available"
                     } else{
                         imageV.image = UIImage(named:images.first!)
-                        labelV.attributedText = getStringSpan(str1: labelStr.first!, str2: (mainStr + labelDate.first!))
+                        if(!showOnlyImages){
+                            labelV.attributedText = getStringSpan(str1: labelStr.first!, str2: (mainStr + labelDate.first!))
+                        }
                     }
                     
                     
@@ -275,7 +279,9 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                         labelV.text = "No Data Available"
                     } else{
                         imageV.image = UIImage(named:images[index - 1])
-                        labelV.attributedText = getStringSpan(str1: labelStr[index-1], str2: (mainStr + labelDate[index-1]))
+                        if(!showOnlyImages){
+                            labelV.attributedText = getStringSpan(str1: labelStr[index-1], str2: (mainStr + labelDate[index-1]))
+                        }
                     }
                     
                 }
@@ -287,7 +293,9 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
                     labelV.text = "No Data Available"
                 } else{
                     imageV.image = UIImage(named:images[index])
-                    labelV.attributedText = getStringSpan(str1: labelStr[index], str2: (mainStr + labelDate[index]))
+                    if(!showOnlyImages){
+                        labelV.attributedText = getStringSpan(str1: labelStr[index], str2: (mainStr + labelDate[index]))
+                    }
                 }
                 
                 
@@ -312,7 +320,7 @@ class CPImageSlider: UIView, UIScrollViewDelegate {
     
     // - - - - - Spannable string - - - - - -  -
     func getStringSpan(str1:String,str2:String) -> NSMutableAttributedString{
-     
+        
         let attr1 = [NSAttributedString.Key.foregroundColor: UIColor.init(named: "FontDarkText"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)]
         let attr2 = [NSAttributedString.Key.foregroundColor: UIColor.init(named: "FontLightText"), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12)]
         

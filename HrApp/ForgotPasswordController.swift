@@ -63,8 +63,8 @@ class ForgotPasswordController: UIViewController {
                 let json: [String: Any] =  [
                          "MobileNo": (edtCin.text ?? "")!,
                          "deviceid": Utility.getDeviceId(),
-                         "ClientID": "string",
-                         "ClientSecret": "string"
+                         "ClientID": AppConstants.CLIENT_ID,
+                         "ClientSecret": AppConstants.CLIENT_SECRET
                 ]
                
                  print("getOtp - - - - -",json)

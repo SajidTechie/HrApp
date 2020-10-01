@@ -55,61 +55,7 @@ class DatePickerController: UIViewController {
 
         if(callFrom.elementsEqual("Ledger")){
 
-//            let currDate = Date()
-//            dateFormatter.dateFormat = "dd/MM/yyyy"
-//
-//            let date = Date()
-//            let calendar = Calendar.current
-//
-//            let year = calendar.component(.year, from: date)
-//            let month = calendar.component(.month, from: date)
-//
-//            if (month >= 4) {
-//                finYear = String(String(year) + "-" + String(year + 1))
-//            } else {
-//                finYear = String(String(year - 1) + "-" + String(year))
-//            }
-//
-//            splitYear = finYear.components(separatedBy: "-")
-//            minYear = splitYear[0]
-//            maxYear = splitYear[1]
-//
-//            if(minYear.elementsEqual(String(year)) && month >= 4){
-////                strToDate = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: -7, to: currDate)!)
-//                 strToDate = dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: 0, to: currDate)!)
-//                strFromDate = "01/04/\(minYear)"
-//                strInitToDate = "31/03/\(maxYear)"
-//            }else{
-//                strFromDate = "01/04/\(minYear)"
-//                strToDate = "31/03/\(maxYear)"
-//                 strInitToDate = "31/03/\(maxYear)"
-//            }
-//
-//            initfromDate = dateFormatter.date(from: strFromDate)
-//            inittoDate = dateFormatter.date(from: strInitToDate)
-//            print("Init date str - - - ",strFromDate," - - - - ",strToDate)
-//            print("Init date - - - ",initfromDate," - - - - ",inittoDate)
-            
 
-//            if isFromDate {
-//                datePicker.minimumDate = initfromDate
-//
-//                if let toDate = toDate {
-//                    datePicker.maximumDate = toDate
-//                } else {
-//                    datePicker.maximumDate = inittoDate
-//                }
-//            } else {
-//                    datePicker.maximumDate = inittoDate
-//
-//                if let fromDate = fromDate {
-//                    datePicker.minimumDate = fromDate
-//                } else {
-//                  //  datePicker.minimumDate = initfromDate
-//                }
-//
-//            }
-            
             if isFromDate {
                 
                 datePicker.minimumDate = initfromDate
@@ -129,7 +75,31 @@ class DatePickerController: UIViewController {
                 }
                 // datePicker.maximumDate = Date()
             }
-        }else{
+        }
+        else if(callFrom.elementsEqual("applyLeaves")){
+            
+            if isFromDate {
+                          datePicker.date = fromDate ?? Date()
+                          datePicker.minimumDate = fromDate ?? Date()
+                          
+                          if let toDate = toDate {
+                              datePicker.maximumDate = toDate
+                          } else {
+                              //datePicker.maximumDate = Date()
+                          }
+                      } else {
+                          datePicker.date = toDate ?? Date()
+                          datePicker.maximumDate = setInitToDate
+                          
+                          if let fromDate = fromDate {
+                              datePicker.minimumDate = fromDate
+                          } else {
+                              //
+                          }
+                         // datePicker.maximumDate = Date()
+                      }
+        }
+        else{
             
             if isFromDate {
                 datePicker.date = fromDate ?? Date()
@@ -138,7 +108,7 @@ class DatePickerController: UIViewController {
                 if let toDate = toDate {
                     datePicker.maximumDate = toDate
                 } else {
-                    datePicker.maximumDate = Date()
+                   datePicker.maximumDate = Date()
                 }
             } else {
                 datePicker.date = toDate ?? Date()

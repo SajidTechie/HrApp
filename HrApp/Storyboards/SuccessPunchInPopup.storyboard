@@ -9,9 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="roboto.bold.ttf">
-            <string>Roboto-Bold</string>
-        </array>
         <array key="roboto.regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -20,12 +17,12 @@
         <!--Success PunchIn Controller-->
         <scene sceneID="hgE-HE-c7P">
             <objects>
-                <viewController modalPresentationStyle="overCurrentContext" id="ffD-IP-Asw" userLabel="Success PunchIn Controller" customClass="SuccessPunchInPopup" customModule="HrApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SuccessPunchInPopup" modalPresentationStyle="overCurrentContext" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ffD-IP-Asw" userLabel="Success PunchIn Controller" customClass="SuccessPunchInPopup" customModule="HrApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sp4-xa-nJY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B70-AB-1xu" customClass="CardView" customModule="HrApp" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B70-AB-1xu" customClass="RoundView" customModule="HrApp" customModuleProvider="target">
                                 <rect key="frame" x="40" y="219" width="334" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="2jA-vN-dLt">
@@ -67,33 +64,35 @@
                                                         <rect key="frame" x="20" y="0.0" width="294" height="60"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="68d-Jx-X1k" userLabel="In">
-                                                        <rect key="frame" x="84.666666666666671" y="11" width="24.666666666666671" height="40"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="41p-WI-9Ba"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="30"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13:09" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-Tm-seP">
-                                                        <rect key="frame" x="125.66666666666666" y="-4" width="112.66666666666666" height="70"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="70" id="YVt-uD-5lM"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="45"/>
-                                                        <nil key="textColor"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPX-Tm-seP">
+                                                        <rect key="frame" x="20" y="0.0" width="294" height="60"/>
+                                                        <attributedString key="attributedText">
+                                                            <fragment content="In  ">
+                                                                <attributes>
+                                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                    <font key="NSFont" size="16" name=".AppleSystemUIFont"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                            <fragment content="13:09">
+                                                                <attributes>
+                                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                    <font key="NSFont" size="48" name="Arial-BoldMT"/>
+                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                </attributes>
+                                                            </fragment>
+                                                        </attributedString>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" name="Orange"/>
                                                 <constraints>
-                                                    <constraint firstItem="68d-Jx-X1k" firstAttribute="centerX" secondItem="vxY-7L-oIw" secondAttribute="centerX" constant="-70" id="4WE-pX-x8V"/>
                                                     <constraint firstAttribute="bottom" secondItem="m5d-My-LEZ" secondAttribute="bottom" id="Akq-FI-gyG"/>
-                                                    <constraint firstItem="dPX-Tm-seP" firstAttribute="centerY" secondItem="vxY-7L-oIw" secondAttribute="centerY" constant="1" id="QNM-mt-aBs"/>
+                                                    <constraint firstItem="dPX-Tm-seP" firstAttribute="top" secondItem="vxY-7L-oIw" secondAttribute="top" id="JhW-po-CmB"/>
+                                                    <constraint firstAttribute="bottom" secondItem="dPX-Tm-seP" secondAttribute="bottom" id="QIi-22-27h"/>
                                                     <constraint firstItem="m5d-My-LEZ" firstAttribute="top" secondItem="vxY-7L-oIw" secondAttribute="top" id="TQ7-5O-alO"/>
-                                                    <constraint firstItem="dPX-Tm-seP" firstAttribute="centerX" secondItem="vxY-7L-oIw" secondAttribute="centerX" constant="15" id="cuA-wv-Sa8"/>
-                                                    <constraint firstItem="68d-Jx-X1k" firstAttribute="centerY" secondItem="vxY-7L-oIw" secondAttribute="centerY" constant="1" id="k5t-li-Z77"/>
+                                                    <constraint firstAttribute="trailing" secondItem="dPX-Tm-seP" secondAttribute="trailing" constant="20" id="mnf-cN-RCe"/>
+                                                    <constraint firstItem="dPX-Tm-seP" firstAttribute="leading" secondItem="vxY-7L-oIw" secondAttribute="leading" constant="20" id="ogR-xv-odO"/>
                                                     <constraint firstAttribute="trailing" secondItem="m5d-My-LEZ" secondAttribute="trailing" constant="20" id="poc-qd-PIs"/>
                                                     <constraint firstItem="m5d-My-LEZ" firstAttribute="leading" secondItem="vxY-7L-oIw" secondAttribute="leading" constant="20" id="tp2-ee-2mx"/>
                                                 </constraints>
@@ -105,18 +104,22 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ytb-jh-siT">
                                                 <rect key="frame" x="0.0" y="240" width="334" height="60"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDc-Ec-IMb" customClass="RoundButton" customModule="HrApp" customModuleProvider="target">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WDc-Ec-IMb" customClass="GradientButton" customModule="HrApp" customModuleProvider="target">
                                                         <rect key="frame" x="93" y="11" width="150" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="150" id="E7Z-hV-G39"/>
                                                             <constraint firstAttribute="height" constant="40" id="yur-Pf-4KS"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                         <state key="normal" title="Ok"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="16"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="clicked_submit:" destination="ffD-IP-Asw" eventType="touchUpInside" id="UFF-xh-pOA"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" name="Orange"/>
@@ -151,7 +154,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.60469285102739712" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="B70-AB-1xu" firstAttribute="leading" secondItem="24u-rI-Q5H" secondAttribute="leading" constant="40" id="3Fb-Fg-5yn"/>
                             <constraint firstItem="24u-rI-Q5H" firstAttribute="trailing" secondItem="B70-AB-1xu" secondAttribute="trailing" constant="40" id="XGk-XI-aSO"/>
@@ -161,6 +164,7 @@
                     </view>
                     <connections>
                         <outlet property="btnOk" destination="WDc-Ec-IMb" id="2wc-Ol-1HR"/>
+                        <outlet property="lblPunchTime" destination="dPX-Tm-seP" id="eJD-fo-Lji"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pK-3e-gar" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

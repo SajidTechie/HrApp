@@ -9,7 +9,7 @@
 import Foundation
 import SystemConfiguration
 import UIKit
-
+import CoreData
 
 public class Utility {
     
@@ -103,13 +103,13 @@ public class Utility {
     
     
     class func getDeviceId() -> String{
-           var deviceId = ""
-            deviceId = UIDevice.current.identifierForVendor!.uuidString
-               if(deviceId.isEqual("")){
-                   deviceId = "-"
-               }
-           return deviceId
-       }
+        var deviceId = ""
+        deviceId = UIDevice.current.identifierForVendor!.uuidString
+        if(deviceId.isEqual("")){
+            deviceId = "-"
+        }
+        return deviceId
+    }
     
     
     class func currDate() -> String{
@@ -145,7 +145,7 @@ public class Utility {
             }catch {
                 
             }
-            
+        
         }
         print("Path -- -- ",path)
         return path
@@ -194,35 +194,63 @@ public class Utility {
     }
     
     
+    class func getIPAddress() -> String? {
+           var address : String?
+           
+           // Get list of all interfaces on the local machine:
+           var ifaddr : UnsafeMutablePointer<ifaddrs>?
+           guard getifaddrs(&ifaddr) == 0 else { return nil }
+           guard let firstAddr = ifaddr else { return nil }
+           
+           // For each interface ...
+           for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+               let interface = ifptr.pointee
+               
+               // Check for IPv4 or IPv6 interface:
+               let addrFamily = interface.ifa_addr.pointee.sa_family
+               if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
+                   
+                   // Check interface name:
+                   let name = String(cString: interface.ifa_name)
+                   if  name == "en0" || name == "pdp_ip0" {
+                       
+                       // Convert interface address to a human readable string:
+                       var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                       getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
+                                   &hostname, socklen_t(hostname.count),
+                                   nil, socklen_t(0), NI_NUMERICHOST)
+                       address = String(cString: hostname)
+                   }
+               }
+           }
+           freeifaddrs(ifaddr)
+           
+           return (address ?? "")!
+       }
+    
+    
+    // - - - - - - - - Function to compress image -  - - - - - - - - -- -
+    class func compressImage (_ image: UIImage) -> Data {
+          
+          let actualHeight:CGFloat = image.size.height
+          let actualWidth:CGFloat = image.size.width
+          let imgRatio:CGFloat = actualWidth/actualHeight
+          let maxWidth:CGFloat = 1024.0
+          let resizedHeight:CGFloat = maxWidth/imgRatio
+          let compressionQuality:CGFloat = 0.5
+          
+          let rect:CGRect = CGRect(x: 0, y: 0, width: maxWidth, height: resizedHeight)
+          UIGraphicsBeginImageContext(rect.size)
+          image.draw(in: rect)
+          let img: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+          
+        let imageData:Data = img.jpegData(compressionQuality: compressionQuality)!
+          UIGraphicsEndImageContext()
+          
+          return imageData
+          
+      }
+    
 }
 
-extension UIView{
-    func GradientView() {
-        let gradientColor = CAGradientLayer()
-        gradientColor.frame = self.frame
-        let color1 = UIColor(red: 95.0/255.0, green: 106.0/255.0, blue: 175.0/255.0, alpha: 1)
-        let color2 = UIColor(red: 63.0/255.0, green: 120.0/255.0, blue: 152.0/255.0, alpha: 1)
-        let color3 = UIColor(red: 6.0/255.0, green: 151.0/255.0, blue: 114.0/255.0, alpha: 1)
-        gradientColor.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientColor.endPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientColor.colors = [color1.cgColor,color2.cgColor,color3.cgColor]
-        self.layer.insertSublayer(gradientColor, at: 0)
-    }
-}
-
-
-extension UIButton{
-    func GradientButton() {
-        let gradientColor = CAGradientLayer()
-        gradientColor.frame = self.frame
-        let color1 = UIColor(red: 95.0/255.0, green: 106.0/255.0, blue: 175.0/255.0, alpha: 1)
-        let color2 = UIColor(red: 63.0/255.0, green: 120.0/255.0, blue: 152.0/255.0, alpha: 1)
-        let color3 = UIColor(red: 6.0/255.0, green: 151.0/255.0, blue: 114.0/255.0, alpha: 1)
-        gradientColor.colors = [color1.cgColor,color2.cgColor,color3.cgColor]
-        self.layer.insertSublayer(gradientColor, at: 0)
-        
-        gradientColor.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientColor.endPoint = CGPoint(x: 1.0, y: 1.0)
-    }
-}
 

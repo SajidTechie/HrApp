@@ -11,7 +11,7 @@ class Item {
     }
 }
 
-class HomeController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+class HomeController: BaseViewController,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var catViewHeight: NSLayoutConstraint!
@@ -22,14 +22,30 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
     @IBOutlet weak var imageSliderBirthDay: CPImageSlider!
     @IBOutlet weak var imageSliderAnniversary: CPImageSlider!
     
+    @IBOutlet weak var lblCheckInMonth: UILabel!
+    @IBOutlet weak var lblcheckInDate: UILabel!
+    @IBOutlet weak var lblLastCheckInTime: UILabel!
+    
+    @IBOutlet weak var lblTimer: UILabel!
+    @IBOutlet weak var vwCheckIn: UIView!
+    @IBOutlet weak var vwCheckOut: UIView!
+    
+    var strActualPunchInTime = ""
+    
+    var timer = Timer()
+    var (hours,minutes,seconds) = (0,0,0)
+    
+    var imgSliderArr = [String]()
+    var items: [Item] = []
+    
     let inset: CGFloat = 10
     let minimumLineSpacing: CGFloat = 10
     let minimumInteritemSpacing: CGFloat = 10
     let cellsPerRow = 2
     var itemWidth:Double = 0.0
     
-    var imgSliderArr = [String]()
-    var items: [Item] = []
+    var PunchStatusElementMain : PunchStatusElement!
+    var PunchStatusDataMain = [PunchStatusData]()
     
     var upcomingAnniversaryElementMain : UpcomingAnniversaryElement!
     var upcomingAnniversaryArray = [UpcomingAnniversaryData]()
@@ -42,8 +58,61 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     var errorData = [ErrorsData]()
     
+    var checkPunchStatus = false
+    
+    var ifAttendanceAllowed = String()
+    
+    var punchInTime = 0
+    var userId = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addSlideMenuButton()
+        
+        let loginData =  UserDefaults.standard.value(forKey: "loginData") as? Dictionary ?? [:]
+         userId = loginData["EmployeeID"] as? String ?? "-"
+        
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = "MMM dd"
+        
+        var showCurrDate = dateFormatterPrint.string(from: Date()).components(separatedBy: " ")
+        var strMonthName = showCurrDate[0]
+        var strDate = showCurrDate[1]
+        
+        lblCheckInMonth.text = strMonthName
+        lblcheckInDate.text = strDate
+        
+        checkPunchStatus = (UserDefaults.standard.bool(forKey: "punchStatus") as! Bool)
+        
+        if(UserDefaults.standard.value(forKey: "punchInTime") != nil){
+            strActualPunchInTime = UserDefaults.standard.value(forKey: "punchInTime") as! String
+        }
+        
+        if (!checkPunchStatus){
+            self.btnCheckin.setTitle("Check In", for: .normal)
+            vwCheckIn.isHidden = false
+            vwCheckOut.isHidden = true
+        }else{
+            self.btnCheckin.setTitle("Check Out", for: .normal)
+            vwCheckIn.isHidden = true
+            vwCheckOut.isHidden = false
+        }
+        
+        let imageView = UIImageView(image:UIImage(named: "dashboard_logo.png"))
+        self.navigationItem.titleView = imageView
+        
+        let notiImage = UIImage(named: "notification.png")
+        let notiButton   = UIBarButtonItem(image: notiImage,  style: .plain, target: self, action: #selector(didTapNotiButton))
+        
+        navigationItem.rightBarButtonItems = [notiButton]
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        
+        if(UserDefaults.standard.value(forKey: "punchInTime") != nil){
+            strActualPunchInTime = UserDefaults.standard.value(forKey: "punchInTime") as! String
+        }
         
         imageSliderBirthDay.showOnlyImages = false
         imageSliderAnniversary.showOnlyImages = false
@@ -63,6 +132,7 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
         self.collectionView.reloadData()
         
         if (Utility.isConnectedToNetwork()) {
+            apiPunchStatus()
             apiUpcomingAnniversaryList()
             apiUpcomingBirthdaysList()
             apiUpcomingHolidayList()
@@ -78,10 +148,79 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
             mergeAnniversaryData(arr: anniversaryData)
             mergeHolidayData(arr: holidayData)
             mergeBirthdayData(arr: birthdayData)
+            
+            if(!strActualPunchInTime.isEmpty){
+                setTotalPunchTime(strPunchIn: strActualPunchInTime)
+            }
         }
         
     }
     
+    
+    func setTotalPunchTime(strPunchIn:String){
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "MM/dd/yyyy hh:mm:ss a"
+        
+        let dateFormatterShow = DateFormatter()
+        dateFormatterShow.dateFormat = "hh:mm:ss a"
+        
+        let dateInput: Date? = dateFormatterGet.date(from: strPunchIn)
+        
+        var time1Str = dateFormatterShow.string(from: dateInput!)
+        print("Time 1 **********",time1Str)
+        var todaysDate = Date()
+        
+        let timeformatter = DateFormatter()
+        timeformatter.dateFormat = "hh:mm:ss a"
+        
+        var time2Str = timeformatter.string(from: todaysDate)
+        print("Time 2 **********",time2Str)
+        
+        var time1 = timeformatter.date(from: time1Str)
+        var time2 = timeformatter.date(from: time2Str)
+        punchInTime = Int(time2!.timeIntervalSince(time1!))
+        print("punchInTime  -- - ",punchInTime)
+        
+        // timer logic
+        if(dateInput == todaysDate){
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.showTime), userInfo: nil, repeats: true)
+        }else{
+            print("Date mismatch")
+            return
+        }
+        
+    }
+    
+    
+    
+    func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        let hours: Int = totalSeconds / 3600
+        return String(format: "%02d:%02d:%02d",hours, minutes, seconds)
+    }
+    
+    @objc func showTime(){
+        lblTimer.text = "\(timeFormatted(punchInTime))"
+        
+        punchInTime += 1
+    }
+    
+    
+    @objc func didTapNotiButton(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        print("Notification")
+    }
+    
+    
+    @IBAction func click_checkIn(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "PunchInOut", bundle: nil)
+        let vcMap = storyBoard.instantiateViewController(withIdentifier: "MapPunchInOutController") as! MapPunchInOutController
+       let navController = UINavigationController(rootViewController: vcMap)
+        self.navigationController?.present(navController, animated: true, completion: nil)
+      
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -101,11 +240,70 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     //API CALL for anniversary list - - - - - - - -
+    func apiPunchStatus(){
+        let json: [String: Any] = ["UserID": userId,"ClientID": AppConstants.CLIENT_ID,"ClientSecret": AppConstants.CLIENT_SECRET]
+        
+        DataManager.shared.makeAPICall(url: AppConstants.PROD_BASE_URL + AppConstants.GET_PUNCH_STATUS, params: json, method: .POST, success: { (response) in
+            let data = response as? Data
+            
+            print("status punch - - -",json)
+            
+            DispatchQueue.main.async {
+                
+                do {
+                    self.PunchStatusElementMain = try JSONDecoder().decode(PunchStatusElement.self, from: data!)
+                    self.PunchStatusDataMain = self.PunchStatusElementMain.data ?? []
+                    
+                    self.errorData = self.PunchStatusElementMain.errors ?? []
+                    
+                    if (self.PunchStatusElementMain.statusCode == 200){
+                        self.checkPunchStatus = self.PunchStatusDataMain[0].status ?? false
+                        
+                        UserDefaults.standard.set(self.checkPunchStatus, forKey: "punchStatus")
+                        
+                        if(self.checkPunchStatus){
+                            self.btnCheckin.setTitle("Check Out", for: .normal)
+                            self.vwCheckIn.isHidden = true
+                            self.vwCheckOut.isHidden = false
+                        }else{
+                            self.btnCheckin.setTitle("Check In", for: .normal)
+                            self.vwCheckIn.isHidden = false
+                            self.vwCheckOut.isHidden = true
+                        }
+                        
+                    }
+                    if(!self.strActualPunchInTime.isEmpty){
+                        self.setTotalPunchTime(strPunchIn: self.strActualPunchInTime)
+                    }
+                    
+                }
+                catch let errorData {
+                    print(errorData.localizedDescription)
+                    if(!self.strActualPunchInTime.isEmpty){
+                        self.setTotalPunchTime(strPunchIn: self.strActualPunchInTime)
+                    }
+                }
+                
+            }
+            
+        }) { (Error) in
+            ViewControllerUtils.sharedInstance.removeLoader()
+            print(Error?.localizedDescription)
+            if(!self.strActualPunchInTime.isEmpty){
+                self.setTotalPunchTime(strPunchIn: self.strActualPunchInTime)
+            }
+        }
+        
+    }
+    
+    //API CALL for anniversary list - - - - - - - -
     func apiUpcomingAnniversaryList(){
-        let json: [String: Any] = ["ClientID": "string","ClientSecret": "string"]
+        let json: [String: Any] = ["ClientID": AppConstants.CLIENT_ID,"ClientSecret": AppConstants.CLIENT_SECRET]
         
         DataManager.shared.makeAPICall(url: AppConstants.PROD_BASE_URL + AppConstants.UPCOMING_ANNIVERSARY, params: json, method: .POST, success: { (response) in
             let data = response as? Data
+            
+            print("anniversary - - -",json)
             
             DispatchQueue.main.async {
                 
@@ -138,10 +336,12 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     // Api call for holiday list  - - - - - - - - -
     func apiUpcomingHolidayList(){
-        let json: [String: Any] = ["ClientID": "string","ClientSecret": "string"]
+        let json: [String: Any] = ["ClientID": AppConstants.CLIENT_ID,"ClientSecret": AppConstants.CLIENT_SECRET]
         
         DataManager.shared.makeAPICall(url: AppConstants.PROD_BASE_URL + AppConstants.UPCOMING_HOLIDAY, params: json, method: .POST, success: { (response) in
             let data = response as? Data
+            
+            print("Holiday", json)
             
             DispatchQueue.main.async {
                 
@@ -176,10 +376,12 @@ class HomeController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     // Api call for birthday list  - - - - - - - - -
     func apiUpcomingBirthdaysList(){
-        let json: [String: Any] = ["ClientID": "string","ClientSecret": "string"]
+        let json: [String: Any] = ["ClientID": AppConstants.CLIENT_ID,"ClientSecret": AppConstants.CLIENT_SECRET]
         
         DataManager.shared.makeAPICall(url: AppConstants.PROD_BASE_URL + AppConstants.UPCOMING_BIRTHDAYS, params: json, method: .POST, success: { (response) in
             let data = response as? Data
+            
+            print("birthday - - -",json)
             
             DispatchQueue.main.async {
                 

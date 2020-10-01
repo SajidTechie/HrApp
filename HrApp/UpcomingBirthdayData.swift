@@ -43,17 +43,22 @@ struct UpcomingBirthdayElement : Codable {
 struct UpcomingBirthdayData : Codable {
     let employeeName : String?
     let birthdate : String?
-
+    let profilePicture : String?
+    let message : String?
+    
     enum CodingKeys: String, CodingKey {
-
         case employeeName = "EmployeeName"
         case birthdate = "Birthdate"
+        case profilePicture = "ProfilePicture"
+        case message = "Message"
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         employeeName = try values.decodeIfPresent(String.self, forKey: .employeeName)
         birthdate = try values.decodeIfPresent(String.self, forKey: .birthdate)
+        profilePicture = try values.decodeIfPresent(String.self, forKey: .profilePicture)
+        message = try values.decodeIfPresent(String.self, forKey: .message)
     }
 
 }

@@ -75,17 +75,17 @@ class LoginController: UIViewController,UITextFieldDelegate{
                  "UserName":(edtCin.text ?? "")!,
                  "Password":(edtPassword.text ?? "")!,
                  "deviceid": Utility.getDeviceId(),
-                 "DeviceType": "Ios",
+                 "DeviceType": AppConstants.DEVICE_TYPE,
                  "AppVersion": appVersion,
                  "OSVersion": osVersion,
                  "pooswooshid": strToken,
                  "IP": ipAddress,
                  "Lat": String(mLat),
                  "Lng": String(mLong),
-                 "AppType": "string",
-                 "ModalType": "string",
-                 "ClientID": "string",
-                 "ClientSecret": "string"
+                 "AppType": AppConstants.APP_TYPE,
+                 "ModalType": Utility.getDeviceId(),
+                 "ClientID": AppConstants.CLIENT_ID,
+                 "ClientSecret":  AppConstants.CLIENT_SECRET,
         ]
        
          print("LOGIN - - - - -",json)
@@ -113,7 +113,7 @@ class LoginController: UIViewController,UITextFieldDelegate{
              if (statusCode == 200)
              {
                  self.loginData = (responseData as? NSDictionary)?["Data"] as? [NSDictionary]
-                 UserDefaults.standard.set(self.loginData, forKey: "anniversaryData")
+                 UserDefaults.standard.set(self.loginData, forKey: "loginData")
                 
                     let storyBoard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
                     let vcHome = storyBoard.instantiateViewController(withIdentifier: "DashboardController") as! DashboardController
@@ -156,9 +156,9 @@ class LoginController: UIViewController,UITextFieldDelegate{
         
         loginApi = AppConstants.PROD_BASE_URL + AppConstants.LOGIN
         
-        print("IP ADDRESS - - - - ",getIPAddress())
+        print("IP ADDRESS - - - - ",Utility.getIPAddress())
         
-        ipAddress = (getIPAddress() ?? "-")!
+        ipAddress = (Utility.getIPAddress() ?? "-")!
         
      //   strToken = (appDelegate.tokenString ?? "-")!
         if(strToken.isEqual("")){
@@ -194,43 +194,6 @@ class LoginController: UIViewController,UITextFieldDelegate{
     @IBAction func clicked_forgotPassword(_ sender: UIButton) {
         let vcForgotPassword = self.storyboard?.instantiateViewController(withIdentifier: "ForgotPasswordController") as! ForgotPasswordController
         self.navigationController!.pushViewController(vcForgotPassword, animated: true)
-    }
-    
-    
- 
-    
-    func getIPAddress() -> String? {
-        var address : String?
-        
-        // Get list of all interfaces on the local machine:
-        var ifaddr : UnsafeMutablePointer<ifaddrs>?
-        guard getifaddrs(&ifaddr) == 0 else { return nil }
-        guard let firstAddr = ifaddr else { return nil }
-        
-        // For each interface ...
-        for ifptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
-            let interface = ifptr.pointee
-            
-            // Check for IPv4 or IPv6 interface:
-            let addrFamily = interface.ifa_addr.pointee.sa_family
-            if addrFamily == UInt8(AF_INET) || addrFamily == UInt8(AF_INET6) {
-                
-                // Check interface name:
-                let name = String(cString: interface.ifa_name)
-                if  name == "en0" || name == "pdp_ip0" {
-                    
-                    // Convert interface address to a human readable string:
-                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
-                    getnameinfo(interface.ifa_addr, socklen_t(interface.ifa_addr.pointee.sa_len),
-                                &hostname, socklen_t(hostname.count),
-                                nil, socklen_t(0), NI_NUMERICHOST)
-                    address = String(cString: hostname)
-                }
-            }
-        }
-        freeifaddrs(ifaddr)
-        
-        return (address ?? "")!
     }
 
     

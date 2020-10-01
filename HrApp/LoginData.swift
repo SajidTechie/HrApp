@@ -40,6 +40,10 @@ struct LoginElement : Codable {
 
 
 struct LoginData : Codable {
+    
+    let uniqueUserID : Int?
+    let isHr : Int?
+    let employeeID : String?
     let employeeFullName : String?
     let profilePicture : String?
     let officialemail : String?
@@ -65,6 +69,9 @@ struct LoginData : Codable {
 
     enum CodingKeys: String, CodingKey {
 
+        case uniqueUserID = "ID"
+        case isHr = "ISHr"
+        case employeeID = "EmployeeID"
         case employeeFullName = "EmployeeFullName"
         case profilePicture = "ProfilePicture"
         case officialemail = "Officialemail"
@@ -91,6 +98,9 @@ struct LoginData : Codable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+         uniqueUserID = try values.decodeIfPresent(Int.self, forKey: .uniqueUserID)
+         isHr = try values.decodeIfPresent(Int.self, forKey: .isHr)
+         employeeID = try values.decodeIfPresent(String.self, forKey: .employeeID)
         employeeFullName = try values.decodeIfPresent(String.self, forKey: .employeeFullName)
         profilePicture = try values.decodeIfPresent(String.self, forKey: .profilePicture)
         officialemail = try values.decodeIfPresent(String.self, forKey: .officialemail)
